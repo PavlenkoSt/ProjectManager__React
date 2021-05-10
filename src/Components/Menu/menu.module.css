@@ -10,4 +10,5 @@
 .menu.show{
     height: calc(100vh - 60px);
     transition: height .3s ease .3s;
+    overflow-y: auto;
 }

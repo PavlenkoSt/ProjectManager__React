@@ -1,5 +1,6 @@
 {
   "name": "check-list",
+  "homepage": "https://github.com/PavlenkoSt/checkList__React",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
