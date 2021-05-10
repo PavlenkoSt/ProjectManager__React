@@ -1,0 +1,15 @@
+.header{
+    height: 60px;
+    width: 60px;
+    background-color: rgb(36, 36, 36);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 3px #333;
+    transition: width .3s ease-in .3s;
+}
+
+.header.wide{
+    width: 300px;
+    transition: width .3s ease-in;
+
+}

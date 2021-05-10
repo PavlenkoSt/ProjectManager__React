@@ -1,0 +1,48 @@
+.burger{
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+.svg{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+}
+  
+.svg path{
+    stroke-width: 15;
+    stroke-linecap: round;
+    stroke: #fff;
+    fill: none;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+  
+  /* In menu form */
+  
+  .topBar,
+  .bottomBar{
+    stroke-dasharray: 240px 910px;
+  }
+  
+  .middleBar{
+    stroke-dasharray: 240px 240px;
+  }
+  
+  /* In cross form */
+  
+  .open .topBar,
+  .open .bottomBar{
+    stroke-dashoffset: -650px;
+  }
+  
+  .open .middleBar{
+    stroke-dasharray: 0px 220px;
+    stroke-dashoffset: -120px;
+  }
