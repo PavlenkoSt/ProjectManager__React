@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { AppStateType } from "../../../Redux/reduxStore"
 import { TaskType } from "../../../Redux/tasksReducer"
 import s from './projectTasks.module.css'
-import TaskItem from "./TaskItem/TaskItem"
+import TaskItemContainer from "./TaskItem/TaskItemContainer"
 
 
 type ProjectTasksPropsType = {
@@ -22,7 +22,7 @@ const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId
         return <p className={s.noTasks}>Задач на проект пока нет!</p>
     }
 
-    const taskElem = findedTasks.map(task => <TaskItem key={task.id} text={task.text} subtasks={task.subtasks} completed={task.completed} />)
+    const taskElem = findedTasks.map(task => <TaskItemContainer key={task.id} text={task.text} subtasksId={task.subtasksId} completed={task.completed} />)
 
     return (
         <div className={s.container}>

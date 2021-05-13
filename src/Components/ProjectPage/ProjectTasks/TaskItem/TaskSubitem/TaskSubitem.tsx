@@ -1,22 +1,34 @@
 import { FC, useState } from "react"
+import { connect } from "react-redux"
+import { AppStateType } from "../../../../../Redux/reduxStore"
 import SubTaskItem from "./SubTaskItem/SubTaskItem"
 import s from './taskSubitem.module.css'
 
 
 type TaskSubitemPropsType = {
     text: string
-    subtasks: Array<any>
+    subtasksId: Array<number>
 }
 
-const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, subtasks }) => {
+type MapStatePropsType = {
+    subsubtasks: any
+}
+
+const TaskSubitem: FC<TaskSubitemPropsType & MapStatePropsType> = ({ text, subtasksId, subsubtasks }) => {
 
     const [showTask, setShowTask] = useState(false)
 
-    // Увеличить структуру, чтоб работало так же как и иннер тригер
-    // написать стили красивого свертывания\развертывания списка
-    const subtasksElems = subtasks.map((subsubtask: any) => <SubTaskItem key={subsubtask.id} completed={subsubtask.completed} text={subsubtask.text} />)
+    const subtasksElems = subtasksId.map((subtaskId: any) => {
+        for(let i = 0; i <= subsubtasks.length; i++){
+            if(subtaskId === subsubtasks[i].id){
+                return subsubtasks[i]
+            }
+        }
+    })
 
-    const isCompleted = subtasks.every(subsubtask => subsubtask.completed)
+    const subtasksGenerate = subtasksElems.map((subsubtask: any) => <SubTaskItem key={subsubtask.id} completed={subsubtask.completed} text={subsubtask.text} /> )
+
+    const isCompleted = subtasksElems.every(subsubtask => subsubtask.completed)
 
     return (
         <div className={`${s.subitem} ${showTask ? s.show : ''}`}> 
@@ -27,9 +39,13 @@ const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, subtasks }) => {
                     <button title='Удалить' className={s.delete}></button>
                 </div>
             </div> 
-            <div className={s.body}>{showTask ? subtasksElems : ''}</div>
+            <div className={s.body}>{showTask ? subtasksGenerate : ''}</div>
         </div>
     )
 }
 
-export default TaskSubitem
+const mapStateToProps = (state: AppStateType) => ({
+    subsubtasks: state.tasksReducer.subsubtasks
+})
+
+export default connect(mapStateToProps)(TaskSubitem)
