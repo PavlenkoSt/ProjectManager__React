@@ -1,8 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import thunkMiddleware from 'redux-thunk'
+import projectsReducer from './projectsReducer'
+import createSagaMiddleware from 'redux-saga'
+import tasksReducer from './tasksReducer'
 
 const rootReducer = combineReducers({
-    
+    projectsReducer,
+    tasksReducer
 })
 
 type RootReducerType = typeof rootReducer
@@ -13,7 +16,8 @@ export type ActionTypes<T extends {[key: string] : (...args: any) => any}> = Ret
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)))
+const sageMiddleware = createSagaMiddleware()
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sageMiddleware)))
 
 
 export default store

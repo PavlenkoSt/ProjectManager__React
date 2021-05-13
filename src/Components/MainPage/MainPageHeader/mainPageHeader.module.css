@@ -1,0 +1,21 @@
+.header{
+    color: #333;
+    font-weight: 700;
+    font-size: 28px;
+    width: calc(100% - 160px);
+    margin: 10px auto;
+    text-align: center;
+}
+
+.info{
+    margin-top: 40px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.info p{
+    color: #333;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 5px;
+}

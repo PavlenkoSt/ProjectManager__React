@@ -1,13 +1,35 @@
+import { Provider } from 'react-redux';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css'
-import Header from './Components/Header/Header';
+import HeaderContainer from './Components/Header/HeaderContainer';
+import MainPage from './Components/MainPage/MainPage';
+import ProjectPage from './Components/ProjectPage/ProjectPage';
+import store from './Redux/reduxStore';
 
 const App = () => {
+
+  const links = store.getState().projectsReducer.projects.map(project => '/' + project.link)
+
   return (
     <div>
-      <Header/>
-      1
+      <HeaderContainer/>
+      <Switch>
+        {/* @ts-ignore */}
+        <Route path={links} component={ProjectPage} />
+        <Route path='/' exact component={MainPage} />
+      </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+const RouterApp = () => {
+  return (
+    <HashRouter>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    </HashRouter>
+  )
+}
+
+export default RouterApp;

@@ -1,0 +1,12 @@
+.noTasks{
+    text-align: center;
+    width: 100%;
+    margin: 20px 0;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.container{
+    padding: 20px 15px;
+}

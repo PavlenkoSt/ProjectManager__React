@@ -1,0 +1,64 @@
+.subInnerTrigger{
+    display: inline-flex;
+}
+
+.subtaskItem{
+    margin-left: 40px;
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: border .2s ease;
+}
+
+.optionsBar{
+    width: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: none;
+    transition: width .2s ease;
+    overflow: hidden;
+}
+
+.delete{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: url(../../../../../../assets/icons/delete.svg) center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.subInnerTrigger:hover .subtaskItem{
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.subInnerTrigger:hover .optionsBar{
+    width: 60px;
+    border: 1px solid rgb(34, 34, 34);
+    border-left: none;
+}
+
+.completed{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.done{
+    background: url(../../../../../../assets/icons/completed-green.svg) center no-repeat;
+}
+
+.noDone{
+    background: url(../../../../../../assets/icons/completed.svg) center no-repeat;
+}

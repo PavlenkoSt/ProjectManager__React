@@ -1,16 +1,20 @@
-import { useState } from 'react'
-import Menu from '../Menu/Menu'
+import { Dispatch, FC, SetStateAction } from 'react'
 import Burger from './Burger/Burger'
 import s from './header.module.css'
+import Home from './Home/Home'
+import Menu from './Menu/Menu'
 
-const Header = () => {
+type HeaderPropsType = {
+    openMenu: boolean
+    setOpenMenu: Dispatch<SetStateAction<boolean>>
+}
 
-    const [ openMenu, setOpenMenu ] = useState(false)
-
+const Header: FC<HeaderPropsType> = ({ openMenu, setOpenMenu }) => {
     return (
         <header className={`${s.header} ${openMenu ? s.wide : ''}`}>    
             <Burger openMenu={openMenu} setOpenMenu={setOpenMenu}/>
-            <Menu openMenu={openMenu}/>
+            <Menu openMenu={openMenu} setOpenMenu={setOpenMenu}/>
+            <Home/>
         </header>
     )
 }

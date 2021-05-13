@@ -1,0 +1,111 @@
+.target{
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: border .2s ease;
+    position: relative;
+    padding-right: 35px;
+}
+
+.target::before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: url(../../../../assets/icons/down-arrow-grey.svg) center no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform .3s ease;
+}
+
+.item.show .target::before{
+    transform: translateY(-50%) rotate(-180deg);
+}
+
+.item.without .target{
+    padding-right: 10px;
+}
+
+.item.without .target:before{
+    display: none;
+}
+
+.item.without .innerTrigger:hover .options{
+    width: 90px;
+}
+
+.innerTrigger{
+    display: inline-flex;
+}
+
+.options{
+    width: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: none;
+    transition: width .2s ease;
+    overflow: hidden;
+}
+
+.delete{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: url(../../../../assets/icons/delete.svg) center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.addSubtaskbtn{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: url(../../../../assets/icons/plus-grey.svg) center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.innerTrigger:hover .target{
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.innerTrigger:hover .options{
+    width: 60px;
+    border: 1px solid rgb(34, 34, 34);
+    border-left: none;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+}
+
+.completed{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.done{
+    background: url(../../../../assets/icons/completed-green.svg) center no-repeat;
+}
+
+.noDone{
+    background: url(../../../../assets/icons/completed.svg) center no-repeat;
+}
