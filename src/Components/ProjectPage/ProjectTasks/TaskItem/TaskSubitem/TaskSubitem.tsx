@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { AppStateType } from "../../../../../Redux/reduxStore"
 import SubTaskItem from "./SubTaskItem/SubTaskItem"
@@ -6,58 +6,22 @@ import s from './taskSubitem.module.css'
 import { tasksActions } from '../../../../../Redux/tasksReducer'
 import AddNewTaskForm from "../../../../common/AddNewTaskForm/AddNewTaskForm"
 
-
 type TaskSubitemPropsType = {
-    id: number
     text: string
-    subsubtasksId: Array<number>
-    deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
-    changeCompletedStatus: (id: number, level: number) => void
+    showTask: boolean
+    isCompleted: boolean
+    subtasksGenerate: any
+    addSubtaskHandler: () => void
+    removeSubitem: () => void
+    addSubtaskFromLevel1: (task: string) => void
+    changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
+    setShowTask: Dispatch<SetStateAction<boolean>>
+    createSubtasksMode: boolean
 }
 
-type MapStatePropsType = {
-    subsubtasks: any
-}
+const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, showTask, isCompleted, subtasksGenerate, addSubtaskHandler, removeSubitem, addSubtaskFromLevel1, changeCreateSubtasksMode, setShowTask, createSubtasksMode }) => {
 
-type MapDispatchPropsType = {
-    setCompletedStatus: (id: number, status: boolean, level: number) => void
-    addNewTask: (task: string, level: number, idTask: number) => void 
-}
-
-const TaskSubitem: FC<TaskSubitemPropsType & MapStatePropsType & MapDispatchPropsType> = ({ id, text, subsubtasksId, subsubtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask }) => {
-
-    const [showTask, setShowTask] = useState(false)
-
-    const [createSubtasksMode, changeCreateSubtasksMode] = useState(false)
-
-    const addSubtaskFromLevel1 = (task: string) => {
-        addNewTask(task, 1, id)
-    }
-
-    const addSubtaskHandler = () => {
-        setShowTask(true)
-        changeCreateSubtasksMode(true)
-    }
-
-    const subtasksElems = subsubtasksId.map((subtaskId: any) => {
-        for(let i = 0; i <= subsubtasks.length; i++){
-            if(subsubtasks[i] && subsubtasks[i].id === subtaskId){
-                return subsubtasks[i]
-            }
-        }
-    })
-
-    const subtasksGenerate = subtasksElems.map((subsubtask: any) => subsubtask && <SubTaskItem key={subsubtask.id} id={subsubtask.id} completed={subsubtask.completed} text={subsubtask.text} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} /> )
-
-    const isCompleted = subtasksElems.every(subsubtasksId => subsubtasksId && subsubtasksId.completed)
-
-    useEffect(() => {
-        setCompletedStatus(id, isCompleted, 1)
-    }, [isCompleted])
-
-    const removeSubitem = () => {
-        deleteTask(id, 1, subsubtasksId)
-    }
+   
 
     return (
         <div className={`${s.subitem} ${showTask ? s.show : ''}`}> 
@@ -74,13 +38,5 @@ const TaskSubitem: FC<TaskSubitemPropsType & MapStatePropsType & MapDispatchProp
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    subsubtasks: state.tasksReducer.subsubtasks
-})
 
-const mapDispatchToProps = {
-    setCompletedStatus: tasksActions.setCompletedStatus,
-    addNewTask: tasksActions.addNewTask
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskSubitem)
+export default TaskSubitem

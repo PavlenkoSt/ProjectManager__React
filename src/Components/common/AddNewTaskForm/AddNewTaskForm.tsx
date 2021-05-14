@@ -6,7 +6,7 @@ import s from './addNewTaskForm.module.css'
 type AddNewTaskFormPropType = {
     addSubtask: (task: string) => void
     changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
-    setShowSubtasks: Dispatch<SetStateAction<boolean>>
+    setShowSubtasks?: Dispatch<SetStateAction<boolean>>
 }
 
 const AddNewTaskForm: FC<AddNewTaskFormPropType> = ({ addSubtask, changeCreateSubtasksMode, setShowSubtasks }) => {
@@ -30,7 +30,9 @@ const AddNewTaskForm: FC<AddNewTaskFormPropType> = ({ addSubtask, changeCreateSu
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                setShowSubtasks(true)
+                if(setShowSubtasks){
+                    setShowSubtasks(true)
+                }
                 addSubtask(values.task)
                 setSubmitting(false)
                 changeCreateSubtasksMode(false)

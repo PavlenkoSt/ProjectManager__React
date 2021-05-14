@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { AppStateType } from "../../../../Redux/reduxStore"
 import { tasksActions } from "../../../../Redux/tasksReducer"
 import TaskItem from "./TaskItem"
-import TaskSubitem from "./TaskSubitem/TaskSubitem"
+import TaskSubitemContainer from "./TaskSubitem/TaskSubitemContainer"
 import TaskWithoutSub from "./TaskWithoutSub/TaskWithoutSub"
 
 type TaskItemContainerPropsType = {
@@ -44,9 +44,9 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
 
     const subtasksGenerate = subtasksFind.map(subtask => {
         if(subtask && subtask.subsubtasksId && subtask.subsubtasksId.length){
-            return <TaskSubitem key={subtask.id} id={subtask.id} text={subtask.text} subsubtasksId={subtask.subsubtasksId} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} />
+            return <TaskSubitemContainer key={subtask.id} id={subtask.id} text={subtask.text} subsubtasksId={subtask.subsubtasksId} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} />
         }else{
-            return subtask && <TaskWithoutSub key={subtask.id} id={subtask.id} completed={subtask.completed} text={subtask.text} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} />
+            return subtask && <TaskWithoutSub key={subtask.id} id={subtask.id} completed={subtask.completed} text={subtask.text} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} addNewTask={addNewTask} />
         }
     })
 
@@ -56,7 +56,7 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
             setCompletedStatus(id, isCompleted, 0)
     }, [isCompleted])
 
-    return <TaskItem 
+    return <TaskItem
         id={id}
         text={text} 
         completed={completed} 

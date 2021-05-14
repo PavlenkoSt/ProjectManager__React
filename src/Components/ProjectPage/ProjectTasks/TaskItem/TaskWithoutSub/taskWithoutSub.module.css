@@ -1,5 +1,5 @@
 .subInnerTrigger{
-    display: inline-flex;
+    display: flex;
 }
 
 .subtaskItem{
@@ -73,4 +73,8 @@
     background: url(../../../../../assets/icons/plus-grey.svg) center no-repeat;
     background-size: cover;
     cursor: pointer;
+}
+
+.subForm{
+    padding-left: 60px;
 }
