@@ -22,7 +22,7 @@ const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId
         return <p className={s.noTasks}>Задач на проект пока нет!</p>
     }
 
-    const taskElem = findedTasks.map(task => <TaskItemContainer key={task.id} text={task.text} subtasksId={task.subtasksId} completed={task.completed} />)
+    const taskElem = findedTasks.map(task => <TaskItemContainer key={task.id} id={task.id} text={task.text} subtasksId={task.subtasksId} completed={task.completed} />)
 
     return (
         <div className={s.container}>

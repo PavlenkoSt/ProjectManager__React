@@ -1,0 +1,63 @@
+.form{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px;
+    border: 1px solid transparent;
+}
+
+.form.err{
+    border: 1px solid red;
+}
+
+.input{
+    font-family: 'Open Sans', sans-serif;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid rgb(138, 138, 138);
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all ease .2s;
+    position: relative;
+    height: 35px;
+    width: 250px;
+}
+
+.input:focus{
+    border: 1px solid #333;
+}
+
+
+.errorMess{
+    position: absolute;
+    bottom: 9px;
+    width: 100%;
+    left: 330px;
+    color: rgb(228, 0, 0);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #333;
+    background-size: cover;
+    border-left: 1px solid #fff;
+}
+
+.add{
+    background: url(../../../assets/icons/plus-grey.svg) center no-repeat #333;
+}
+
+.close{
+    background: url(../../../assets/icons/delete-white.svg) center no-repeat #333;
+    background-size: 20px;
+}

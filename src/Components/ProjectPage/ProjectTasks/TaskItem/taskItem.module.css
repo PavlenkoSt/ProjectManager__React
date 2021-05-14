@@ -39,7 +39,7 @@
 }
 
 .innerTrigger{
-    display: inline-flex;
+    display: flex;
 }
 
 .options{
@@ -108,4 +108,8 @@
 
 .noDone{
     background: url(../../../../assets/icons/completed.svg) center no-repeat;
+}
+
+.subForm{
+    padding-left: 20px;
 }
