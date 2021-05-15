@@ -38,7 +38,7 @@ export const tasksActions = {
     ),
     changeCompletedStatus: (id: number, level: number) => ({ type: CHANGE_COMPLETED_STATUS, id, level }),
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
-    addNewTask: (task: string, level: number, idTask: number | null) => ({ type: ADD_NEW_TASK, task, level, idTask })
+    addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId })
 }
 
 type InitialValueType = typeof initialValue
@@ -168,8 +168,7 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                         ...state,
                         tasks: [...state.tasks, {
                             id: Date.now(),
-                            // hard code !!!!!!!!!!!!!!!!!!!!!!!!
-                            forProject: 1,
+                            forProject: action.projectId,
                             text: action.task,
                             completed: false,
                             subtasksId: []

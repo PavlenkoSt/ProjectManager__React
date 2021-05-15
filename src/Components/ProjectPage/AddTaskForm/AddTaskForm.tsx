@@ -7,10 +7,14 @@ import { connect } from "react-redux"
 import { AppStateType } from "../../../Redux/reduxStore"
 
 type MapDispatchPropsType = {   
-    addNewTask: (task: string, level: number, idTask: number | null) => void
+    addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => void
 }
 
-const AddTaskForm: FC<MapDispatchPropsType> = ({ addNewTask }) => {
+type AddTaskFormPropsType = {
+    projectId: number
+}
+
+const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTask, projectId }) => {
 
     const [openForm, setOpenForm] = useState(false)
 
@@ -28,7 +32,7 @@ const AddTaskForm: FC<MapDispatchPropsType> = ({ addNewTask }) => {
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        addNewTask(values.newTask, -1, null)
+                        addNewTask(values.newTask, -1, null, projectId)
                         setOpenForm(false)
                         setSubmitting(false)
                     }}
@@ -51,9 +55,7 @@ const AddTaskForm: FC<MapDispatchPropsType> = ({ addNewTask }) => {
     )
 }
 
-const mapStateToProps = (state: AppStateType) => {
-
-}
+const mapStateToProps = (state: AppStateType) => ({})
 
 const mapDispatchToProps = {
     addNewTask: tasksActions.addNewTask
