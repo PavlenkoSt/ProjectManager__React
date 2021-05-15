@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import s from './addTaskForm.module.css'
 import s2 from '../../common/AddNewTaskForm/addNewTaskForm.module.css'
 import { tasksActions } from "../../../Redux/tasksReducer"
@@ -17,6 +17,14 @@ type AddTaskFormPropsType = {
 const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTask, projectId }) => {
 
     const [openForm, setOpenForm] = useState(false)
+
+    useEffect(() => {
+        const input = document.querySelector('.addNewTaskForm_input__3EOqx')
+        if(input){
+            //@ts-ignore
+            input.focus()
+        }
+    }, [openForm])
 
     return (
         <div className={s.container}>

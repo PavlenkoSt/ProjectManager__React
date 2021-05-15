@@ -20,8 +20,8 @@ const initialValue = {
     tasks: [
         {id: 1, forProject: 1, text: 'Сделать хедер', completed: false, subtasksId: [1, 2, 3]},
         {id: 2, forProject: 1, text: 'Сделать футер', completed: true, subtasksId: []},
-        {id: 3, forProject: 3, text: 'Сделать хедер', completed: false, subtasksId: []},
-        {id: 4, forProject: 3, text: 'Сделать футер', completed: true, subtasksId: []}
+        {id: 3, forProject: 5, text: 'Сделать хедер', completed: false, subtasksId: []},
+        {id: 4, forProject: 5, text: 'Сделать футер', completed: true, subtasksId: []}
     ],
     subtasks: [
         {id: 1, text: 'Написать html-разметку', completed: false, subsubtasksId: [1, 2]},
