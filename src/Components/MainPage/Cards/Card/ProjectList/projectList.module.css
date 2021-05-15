@@ -2,7 +2,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 
 .list li{
@@ -44,7 +44,6 @@
 
 .line{
     height: 100%;
-    width: 50%;
     position: absolute;
     top: 0;
     left: 0;

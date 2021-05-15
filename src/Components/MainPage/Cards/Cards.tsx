@@ -5,13 +5,13 @@ import s from './cards.module.css'
 const Cards = () => {
     return (
         <div className={s.container}>
-            <Card title='Добавить новый проект'>
+            <Card title='Добавить новый проект' addProject={true}>
 
             </Card>
-            <Card title='Активные проекты'>
+            <Card title='Последние активные проекты' addProject={false}>
                 <ProjectList allMode={false} />
             </Card>
-            <Card title='Все проекты'>
+            <Card title='Последние проекты' addProject={false}>
                 <ProjectList allMode={true} />
             </Card>
         </div>
