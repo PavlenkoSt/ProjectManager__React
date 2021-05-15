@@ -19,7 +19,7 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
     setCompletedStatus: (id: number, status: boolean, level: number) => void
-    addNewTask: (task: string, level: number, idTask: number) => void 
+    addNewTask: (task: string, level: number, idTask: number | null) => void 
 }
 
 const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({ id, text, subsubtasksId, subsubtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask }) => {

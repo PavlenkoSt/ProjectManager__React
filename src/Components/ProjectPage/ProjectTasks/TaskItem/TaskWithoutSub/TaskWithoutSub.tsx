@@ -8,7 +8,7 @@ type TaskWithoutSubPropsType = {
     completed: boolean
     deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
     changeCompletedStatus: (id: number, level: number) => void
-    addNewTask: (task: string, level: number, idTask: number) => void 
+    addNewTask: (task: string, level: number, idTask: number | null) => void 
 }
 
 const TaskWithoutSub: FC<TaskWithoutSubPropsType> = ({ id, text, completed, deleteTask, changeCompletedStatus, addNewTask }) => {

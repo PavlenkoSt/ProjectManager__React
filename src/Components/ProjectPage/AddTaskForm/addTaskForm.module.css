@@ -1,0 +1,26 @@
+.container{
+    padding: 0 25px;
+    margin-top: -15px;
+}
+
+.togglerInner{
+    display: flex;
+    font-weight: 600;
+    color: #333;
+}
+
+.toggler{
+    border: none;
+    outline: none;
+    width: 28px;
+    height: 28px;
+    background: url(../../../assets/icons/plus-grey.svg) center no-repeat #333;
+    background-size: cover;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.form{
+    display: flex;
+    align-items: center;
+}

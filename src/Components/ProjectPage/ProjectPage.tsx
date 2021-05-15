@@ -6,6 +6,7 @@ import { ProjectType } from "../../Redux/projectsReducer"
 import { AppStateType } from "../../Redux/reduxStore"
 import s from './projectPage.module.css'
 import ProjectTasks from "./ProjectTasks/ProjectTasks"
+import AddTaskForm from './AddTaskForm/AddTaskForm'
 
 type MapStatePropsType = {
     projects: Array<ProjectType>
@@ -30,6 +31,7 @@ const ProjectPage: FC<RouteComponentProps & MapStatePropsType> = ({ location, pr
         <div className={s.container}>
             <h2 className={s.header}>{ `${targetProject.core} ${targetProject.name}` }</h2>
             <ProjectTasks projectId={targetProject.id}/>
+            <AddTaskForm/>
         </div>
     )
 }

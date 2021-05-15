@@ -21,7 +21,7 @@ type MapDispatchPropsType = {
     deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
     changeCompletedStatus: (id: number, level: number) => void
     setCompletedStatus: (id: number, status: boolean, level: number) => void
-    addNewTask: (task: string, level: number, idTask: number) => void
+    addNewTask: (task: string, level: number, idTask: number | null) => void
 }
 
 
