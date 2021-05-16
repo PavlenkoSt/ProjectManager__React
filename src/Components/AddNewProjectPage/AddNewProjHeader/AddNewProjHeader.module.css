@@ -1,0 +1,14 @@
+.header{
+    text-align: center;
+    width: calc(100% - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px auto;
+    color: #333;
+    font-size: 18px;
+}
+
+.header h2{
+    margin: 0;
+}

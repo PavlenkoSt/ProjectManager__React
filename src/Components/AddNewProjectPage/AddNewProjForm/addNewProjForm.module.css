@@ -1,0 +1,75 @@
+.form{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.item label{
+    margin-bottom: 2px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.item input,
+.item textarea{
+    border: 1px solid rgb(160, 160, 160);
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: all ease .2s;
+}
+
+.item input:focus,
+.item textarea:focus{
+    border: 1px solid rgb(24, 24, 24);
+
+}
+
+.textarea{
+    width: 100%;
+    resize: none;
+    height: 200px;
+}
+
+.btn{
+    background-color: rgb(168, 255, 168);
+    padding: 10px 15px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid rgb(131, 131, 131);
+    color: rgb(70, 70, 70);
+    margin-top: 5px;
+    cursor: pointer;
+    transition: all ease .2s;
+}
+
+.btn:hover{
+    background-color: rgb(108, 255, 108);
+    color: #333;
+    border: 1px solid #333;
+}
+
+.err{
+    color: red;
+    font-size: 13px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+.item .input.errInp{
+    border: 1px solid red;
+}

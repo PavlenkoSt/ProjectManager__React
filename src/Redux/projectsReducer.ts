@@ -1,5 +1,7 @@
 import { ActionTypes } from "./reduxStore"
 
+const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT'
+
 export type ProjectType = {
     id: number
     core: string
@@ -20,7 +22,7 @@ const initialValue = {
 }
 
 export const projectsActions = {
-
+    addNewProject: (name: string, core: string, desc: string) => ({ type: ADD_NEW_PROJECT, name, core, desc })
 }
 
 type InitialValueType = typeof initialValue
@@ -29,6 +31,20 @@ type ActionType = ActionTypes<typeof projectsActions>
 
 const projectsReducer = (state = initialValue, action:ActionType):InitialValueType =>{
     switch(action.type){
+        case ADD_NEW_PROJECT: {
+            const newProj = {
+                id: Date.now(), 
+                core: action.core, 
+                name: action.name, 
+                completed: false, 
+                desc: action.desc, 
+                link: `${action.core.toLowerCase()}-${action.name.toLowerCase()}`
+            }
+            return {
+                ...state,
+                projects: [...state.projects, newProj ]
+            }
+        }
         default: return state
     }
 }
