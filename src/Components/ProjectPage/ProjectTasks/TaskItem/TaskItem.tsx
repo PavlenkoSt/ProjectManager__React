@@ -9,7 +9,7 @@ type TaskItemPropsType = {
     subsubtasksId?: Array<number> 
     showSubtasks: boolean
     setShowSubtasks: Dispatch<SetStateAction<boolean>>
-    subtasksGenerate: Array<JSX.Element>
+    subtasksGenerate: Array<JSX.Element> | any
     isCompleted: boolean
     deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
     changeCompletedStatus: (id: number, level: number) => void
@@ -60,7 +60,7 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
                 </div>
             </div>
             <div className={s.body}>
-                {showSubtasks ? subtasksGenerate : ''}
+                {showSubtasks && subtasksGenerate.length ? subtasksGenerate : ''}
                 { createSubtasksMode && <div className={s.subForm}><AddNewTaskForm addSubtask={addSubtaskFromLevel0} changeCreateSubtasksMode={changeCreateSubtasksMode} setShowSubtasks={setShowSubtasks} /></div> }
             </div>
         </div>

@@ -17,10 +17,16 @@
     overflow: hidden;
 }
 
+
+
 .innerTrigger:hover .optionsBar{
     width: 60px;
     border: 1px solid rgb(34, 34, 34);
     border-left: none;
+}
+
+.innerTrigger:hover .optionsBar.big{
+    width: 90px;
 }
 
 .innerTrigger:hover .trigger{
@@ -54,6 +60,10 @@
     transition: transform .3s ease;
 }
 
+.trigger.withoutArr::before{
+    display: none;
+}
+
 .subitem.show .trigger::before{
     transform: translateY(-50%) rotate(-180deg);
 }
@@ -80,6 +90,25 @@
     background: url(../../../../../assets/icons/delete.svg) center no-repeat;
     background-size: cover;
     cursor: pointer;
+}
+
+.completed{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.done{
+    background: url(../../../../../assets/icons/completed-green.svg) center no-repeat;
+}
+
+.noDone{
+    background: url(../../../../../assets/icons/completed.svg) center no-repeat;
 }
 
 .body{

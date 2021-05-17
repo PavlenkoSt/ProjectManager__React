@@ -4,7 +4,6 @@ import { AppStateType } from "../../../../Redux/reduxStore"
 import { tasksActions } from "../../../../Redux/tasksReducer"
 import TaskItem from "./TaskItem"
 import TaskSubitemContainer from "./TaskSubitem/TaskSubitemContainer"
-import TaskWithoutSub from "./TaskWithoutSub/TaskWithoutSub"
 
 type TaskItemContainerPropsType = {
     text: string
@@ -51,12 +50,13 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
     const subtasksGenerate = subtasksFind
         .sort(sortTasks)
         .map(subtask => {
-        if(subtask && subtask.subsubtasksId && subtask.subsubtasksId.length){
+        if(subtask && subtask.subsubtasksId ){
             return <TaskSubitemContainer 
                 key={subtask.id} 
                 id={subtask.id} 
                 order={subtask.order} 
                 text={subtask.text} 
+                completed={subtask.completed}
                 subsubtasksId={subtask.subsubtasksId} 
                 deleteTask={deleteTask} 
                 changeCompletedStatus={changeCompletedStatus}
@@ -64,22 +64,6 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
                 setDragStartOrder={setDragStartOrder}
                 dragStartId={dragStartId}
                 setDragStartId={setDragStartId}
-            />
-        }else{
-            return subtask && <TaskWithoutSub 
-                key={subtask.id} 
-                id={subtask.id} 
-                completed={subtask.completed} 
-                text={subtask.text} 
-                order={subtask.order}
-                deleteTask={deleteTask} 
-                changeCompletedStatus={changeCompletedStatus} 
-                addNewTask={addNewTask} 
-                dragStartOrder={dragStartOrder}
-                setDragStartOrder={setDragStartOrder}
-                dragStartId={dragStartId}
-                setDragStartId={setDragStartId}
-                changeTaskOrder={changeTaskOrder}
             />
         }
     })

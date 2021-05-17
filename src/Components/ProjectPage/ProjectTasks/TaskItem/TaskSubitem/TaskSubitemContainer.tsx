@@ -10,6 +10,7 @@ type TaskSubitemContainerPropsType = {
     text: string
     subsubtasksId: Array<number>
     order: number
+    completed: boolean
     deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
     changeCompletedStatus: (id: number, level: number) => void
     dragStartOrder: number
@@ -28,7 +29,7 @@ type MapDispatchPropsType = {
     changeTaskOrder: (id: number, order: number, level: number) => void
 }
 
-const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({ id, text, order, subsubtasksId, subsubtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder, dragStartOrder, setDragStartOrder, dragStartId, setDragStartId }) => {
+const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({ id, text, order, subsubtasksId, completed, subsubtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder, dragStartOrder, setDragStartOrder, dragStartId, setDragStartId }) => {
     const [showTask, setShowTask] = useState(false)
 
     const [createSubtasksMode, changeCreateSubtasksMode] = useState(false)
@@ -40,6 +41,10 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
     const addSubtaskHandler = () => {
         setShowTask(true)
         changeCreateSubtasksMode(true)
+    }
+
+    const toggleCompletedStatus = () => {
+        changeCompletedStatus(id, 1)
     }
 
     const subtasksElems = subsubtasksId.map((subtaskId: any) => {
@@ -98,6 +103,7 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
 
     return <TaskSubitem 
         text={text} 
+        completed={completed}
         isCompleted={isCompleted} 
         showTask={showTask}
         subtasksGenerate={subtasksGenerate}
@@ -111,6 +117,7 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         dragEndHandler={dragEndHandler}
         dragOverHandler={dragOverHandler}
         dropHandler={dropHandler}
+        toggleCompletedStatus={toggleCompletedStatus}
     />
 }
 
