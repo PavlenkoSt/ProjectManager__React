@@ -7,21 +7,24 @@ const DELETE_TASK = 'DELETE_TASK'
 const CHANGE_COMPLETED_STATUS = 'CHANGE_COMPLETED_STATUS'
 const SET_COMPLETED_STATUS = 'SET_COMPLETED_STATUS'
 const ADD_NEW_TASK = 'ADD_NEW_TASK'
+const CHANGE_TASK_ORDER = 'CHANGE_TASK_ORDER'
 
 export type TaskType = {
     id: number
     forProject?: number
     text: string
+    order: number
     completed: boolean
     subtasksId: any
 }
 
 const initialValue = {
     tasks: [
-        {id: 1, forProject: 1, text: 'Сделать хедер', completed: false, subtasksId: [1, 2, 3]},
-        {id: 2, forProject: 1, text: 'Сделать футер', completed: true, subtasksId: []},
-        {id: 3, forProject: 5, text: 'Сделать хедер', completed: false, subtasksId: []},
-        {id: 4, forProject: 5, text: 'Сделать футер', completed: true, subtasksId: []}
+        {id: 1, forProject: 1, text: 'Сделать хедер', order: 1, completed: false, subtasksId: [1, 2, 3]},
+        {id: 2, forProject: 1, text: 'Сделать футер', order: 2, completed: true, subtasksId: []},
+        {id: 3, forProject: 1, text: 'Спасти Вселенную', order: 3, completed: true, subtasksId: []},
+        {id: 4, forProject: 5, text: 'Сделать хедер', order: 1, completed: false, subtasksId: []},
+        {id: 5, forProject: 5, text: 'Сделать футер', order: 2, completed: true, subtasksId: []}
     ],
     subtasks: [
         {id: 1, text: 'Написать html-разметку', completed: false, subsubtasksId: [1, 2]},
@@ -40,7 +43,8 @@ export const tasksActions = {
     ),
     changeCompletedStatus: (id: number, level: number) => ({ type: CHANGE_COMPLETED_STATUS, id, level }),
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
-    addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId })
+    addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId }),
+    changeTaskOrder: (id: number, order: number) => ({ type: CHANGE_TASK_ORDER, id, order})
 }
 
 type InitialValueType = typeof initialValue
@@ -166,6 +170,10 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                     }
                 }
                 case -1: {
+                    const orders = state.tasks
+                        .filter(task => task.forProject === action.projectId)
+                        .map(task => task.order)
+                    const maxOrder = Math.max(...orders)
                     return {
                         ...state,
                         tasks: [...state.tasks, {
@@ -173,11 +181,23 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                             forProject: action.projectId,
                             text: action.task,
                             completed: false,
+                            order: maxOrder + 1,
                             subtasksId: []
                         }]
                     }
                 }
                 default: return state
+            }
+        }
+        case CHANGE_TASK_ORDER: {
+            return {
+                ...state,
+                tasks: state.tasks.map(task => {
+                    if(task.id === action.id){
+                        task.order = action.order
+                    }
+                    return task
+                })
             }
         }
         default: return state
