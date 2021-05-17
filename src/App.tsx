@@ -1,15 +1,22 @@
-import { Provider } from 'react-redux';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { FC, useEffect } from 'react'
+import { Provider } from 'react-redux'
+import { HashRouter, Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom'
 import './App.css'
-import AddNewProjectPage from './Components/AddNewProjectPage/AddNewProjectPage';
-import HeaderContainer from './Components/Header/HeaderContainer';
-import MainPage from './Components/MainPage/MainPage';
-import ProjectPage from './Components/ProjectPage/ProjectPage';
-import store from './Redux/reduxStore';
+import AddNewProjectPage from './Components/AddNewProjectPage/AddNewProjectPage'
+import HeaderContainer from './Components/Header/HeaderContainer'
+import MainPage from './Components/MainPage/MainPage'
+import ProjectPage from './Components/ProjectPage/ProjectPage'
+import store from './Redux/reduxStore'
 
-const App = () => {
 
-  const links = store.getState().projectsReducer.projects.map(project => '/' + project.link)
+
+const App: FC<RouteComponentProps> = ({ location }) => {
+  
+  let links = store.getState().projectsReducer.projects.map(project => '/' + project.link)
+
+  useEffect(() => {
+    links = store.getState().projectsReducer.projects.map(project => '/' + project.link)
+  }, [location.pathname])
 
   return (
     <div>
@@ -24,11 +31,13 @@ const App = () => {
   )
 }
 
+const AppWithRouter = withRouter(App)
+
 const RouterApp = () => {
   return (
     <HashRouter>
       <Provider store={store}>
-        <App/>
+        <AppWithRouter />
       </Provider>
     </HashRouter>
   )

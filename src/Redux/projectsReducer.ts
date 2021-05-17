@@ -1,3 +1,4 @@
+import constructLinkFromProjectName from "../heplers/constructLinkFromProjectName"
 import { ActionTypes } from "./reduxStore"
 
 const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT'
@@ -38,7 +39,7 @@ const projectsReducer = (state = initialValue, action:ActionType):InitialValueTy
                 name: action.name, 
                 completed: false, 
                 desc: action.desc, 
-                link: `${action.core.toLowerCase()}-${action.name.toLowerCase()}`
+                link: `${constructLinkFromProjectName(action.core)}-${constructLinkFromProjectName(action.name)}`
             }
             return {
                 ...state,

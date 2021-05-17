@@ -9,6 +9,10 @@
     transition: background-color .2s ease;
 }
 
+.card:first-child{
+    justify-content: start;
+}
+
 .header{
     text-align: center;
     margin: 10px 0;

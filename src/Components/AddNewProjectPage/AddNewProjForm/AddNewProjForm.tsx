@@ -1,6 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { FC } from "react"
 import { connect } from "react-redux"
+import { RouteComponentProps, withRouter } from "react-router"
+import { compose } from "redux"
+import constructLinkFromProjectName from "../../../heplers/constructLinkFromProjectName"
 import isUniqueProjectName from "../../../heplers/isUniqueProjectName"
 import { projectsActions, ProjectType } from "../../../Redux/projectsReducer"
 import { AppStateType } from "../../../Redux/reduxStore"
@@ -14,7 +17,7 @@ type MapStatePropsType = {
     projects: Array<ProjectType>
 }
 
-const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType> = ({ addNewProj, projects }) => {
+const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType & RouteComponentProps> = ({ addNewProj, projects, history }) => {
     return (
         <Formik
             initialValues={{ name: '', title: '', desc: '' }}
@@ -33,6 +36,7 @@ const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType> = ({ addNewPr
             }}
             onSubmit={(values, { setSubmitting }) => {
                 addNewProj(values.name, values.title, values.desc)
+                history.push(`${constructLinkFromProjectName(values.title)}-${constructLinkFromProjectName(values.name)}`)                
             }}
         >
         {({ isSubmitting, errors, touched }) => (
@@ -40,16 +44,16 @@ const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType> = ({ addNewPr
                 <div  className={s.item}>
                     <label htmlFor='title' >Заголовок / Суть:</label>
                     <Field type="text" name="title" id='title' autoComplete='off' className={`${s.input} ${errors.title && touched.title ? s.errInp : ''}`} />
-                    <ErrorMessage className={s.err} name="title" component="div"  />
+                    <ErrorMessage className={s.err} name="title" component="div"/>
                 </div>
                 <div className={s.item}>
                     <label htmlFor='name'>Название:</label>
                     <Field type="text" name="name" id='name' autoComplete='off' className={`${s.input} ${errors.name && touched.name ? s.errInp : ''}`} />
-                    <ErrorMessage className={s.err} name="name" component="div"  />
+                    <ErrorMessage className={s.err} name="name" component="div"/>
                 </div>
                 <div  className={s.item}>
                     <label htmlFor='desc'>Описание:</label>
-                    <Field name="desc" autoComplete='off' id='desc' component='textarea' className={s.textarea} />
+                    <Field name="desc" autoComplete='off' id='desc' component='textarea' className={s.textarea}/>
                 </div>
 
                 <button className={s.btn} type="submit" disabled={isSubmitting}>Сохранить и перейти в проект</button>
@@ -66,4 +70,4 @@ const mapDispatchToProps = {
     addNewProj: projectsActions.addNewProject
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewProjForm)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddNewProjForm))
