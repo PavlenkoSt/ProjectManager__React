@@ -50,7 +50,7 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
     const subtasksGenerate = subtasksFind
         .sort(sortTasks)
         .map(subtask => {
-        if(subtask && subtask.subsubtasksId ){
+        if(subtask && subtask.subsubtasksId){
             return <TaskSubitemContainer 
                 key={subtask.id} 
                 id={subtask.id} 
@@ -106,6 +106,7 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
         e.preventDefault()
         changeTaskOrder(dragStartId, order, 0)
         changeTaskOrder(id, dragStartOrder, 0)
+        
     }
 
     return <TaskItem

@@ -99,6 +99,9 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         e.preventDefault()
         changeTaskOrder(dragStartId, order, 1)
         changeTaskOrder(id, dragStartOrder, 1)
+        console.log(id, order);
+        // console.log(dragStartId, order);
+        // console.log(id, dragStartOrder);
     }
 
     return <TaskSubitem 

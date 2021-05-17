@@ -23,7 +23,6 @@ type TaskSubitemPropsType = {
 
 const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, showTask, isCompleted, completed, subtasksGenerate, addSubtaskHandler, removeSubitem, toggleCompletedStatus, addSubtaskFromLevel1, changeCreateSubtasksMode, setShowTask, createSubtasksMode, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
 
-
     const completedSubtask = !subtasksGenerate?.length ? completed : isCompleted
 
     return (
