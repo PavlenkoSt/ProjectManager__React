@@ -38,6 +38,9 @@ const AllProjPage: FC<MapStatePropsType & MapDispatchPropsType> = ({ projects, f
                 <>
                     <AllProjFilter filterOption={filterOption} changeFilterOption={changeFilterOption}/>
                     <AllProjTable targetProjects={targetProjects} deleteProject={deleteProject}/>
+                    <div className={s.linkArea}>
+                        <NavLink to='/add-new-project'>Добавить новый проект</NavLink>
+                    </div>
                 </>
             ) : (
                 <p className={s.noProj}>Проектов пока нет. <NavLink to='/add-new-project'>Добавьте первый.</NavLink></p>

@@ -67,9 +67,11 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
     const dragStartHandler = (e: any) => {
         setDragStartId(id)
         setDragStartOrder(order)
+        e.target.style.opacity = '0.5'
     }
 
     const dragEndHandler = (e: any) => {
+        e.target.style.opacity = '1'
         if(e.target.classList.contains('taskItem_dragOver__2O2xP')){
             e.target.classList.remove('taskItem_dragOver__2O2xP')
         }else{

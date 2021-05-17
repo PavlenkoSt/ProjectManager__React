@@ -25,3 +25,22 @@
 .noProj a{
     color: rgb(65, 65, 255);
 }
+
+.linkArea{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.linkArea a{
+    color: rgb(65, 65, 255);
+    transition: all ease .2s;
+    text-decoration: none;
+}
+
+.linkArea a:hover{
+    text-decoration: underline;
+}
