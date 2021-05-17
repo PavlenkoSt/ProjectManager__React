@@ -7,6 +7,7 @@
     transition: border .2s ease;
     position: relative;
     padding-right: 35px;
+    width: calc(100% - 90px);
 }
 
 .target::before{
@@ -115,5 +116,13 @@
 }
 
 .target.dragOver{
-    background-color: rgb(138, 138, 138);
+    background-color: rgb(168, 167, 167);
+    border: 1px solid rgb(34, 34, 34);
+}
+
+.target.dragOver + .options{
+    width: 90px !important;
+    border: 1px solid rgb(34, 34, 34);
+    border-left: none;
+    background-color: rgb(168, 167, 167);
 }
