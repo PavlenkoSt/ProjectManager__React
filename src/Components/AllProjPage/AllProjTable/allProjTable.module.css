@@ -1,13 +1,3 @@
-.noProj{
-    text-align: center;
-    color: #333;
-    font-size: 15px;
-}
-
-.noProj a{
-    color: rgb(65, 65, 255);
-}
-
 .table{
     color: #333;
     width: 100%;
@@ -40,6 +30,25 @@
 
 .table a:hover{
     text-decoration: underline;
+}
+
+.table td:nth-child(1){
+    width: 15%;
+}
+.table td:nth-child(2){
+    width: 15%;
+}
+.table td:nth-child(3){
+    width: 55%;
+}
+.table td:nth-child(4){
+    width: 5%;
+}
+.table td:nth-child(5){
+    width: 5%;
+}
+.table td:nth-child(6){
+    width: 5%;
 }
 
 .btn{

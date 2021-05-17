@@ -15,6 +15,7 @@ type AllProjItemPropsType = {
     id: number
     completed: boolean
     link: string
+    deleteProject: (id: number) => void
 }
 
 type MapStatePropsType = {
@@ -23,7 +24,7 @@ type MapStatePropsType = {
     subsubtasks: Array<any>
 }
 
-const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType> = ({ core, name, desc, completed, link, id, tasks, subtasks, subsubtasks,  }) => {
+const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType> = ({ core, name, desc, completed, link, id, tasks, subtasks, subsubtasks, deleteProject }) => {
 
     const targetTasks = tasks.filter(task => task.forProject === id)
     const targetSubtasks = getSubTasksFromTasks(targetTasks, subtasks)
@@ -35,6 +36,10 @@ const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType> = ({ core, name,
         subsubtasks: targetSubSubtasks
     }, id)
 
+    const deleteItem = () => {
+        deleteProject(id)
+    }
+
     return (
         <tr>
             <td>{core}</td>
@@ -43,7 +48,7 @@ const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType> = ({ core, name,
             <td>{ completed ? '100%' : procent + '%'}</td>
             <td>{ completed ? <span className={s.green}>&#10004;</span> : <span>&#10008;</span>}</td>
             <td>
-                <button className={s.btn}>&#9746;</button>    
+                <button onClick={deleteItem} className={s.btn}>&#9746;</button>    
             </td>
         </tr>
     )

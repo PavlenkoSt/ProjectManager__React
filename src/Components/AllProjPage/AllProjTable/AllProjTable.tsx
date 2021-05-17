@@ -1,30 +1,25 @@
 import { FC } from "react"
-import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
-import { ProjectType } from "../../../Redux/projectsReducer"
-import { AppStateType } from "../../../Redux/reduxStore"
 import AllProjItem from "./AllProjItem/AllProjItem"
 import s from './allProjTable.module.css'
 
-type MapStatePropsType = {
-    projects: Array<ProjectType>
+type AllProjTablePropsType = {
+    targetProjects: Array<any>
+    deleteProject: (id: number) => void
 }
 
-const AllProjTable: FC<MapStatePropsType> = ({ projects }) => {
+const AllProjTable: FC<AllProjTablePropsType> = ({ targetProjects, deleteProject }) => {
 
-    const projectToTable = projects.map(project => <AllProjItem 
-        key={project.id} 
-        core={project.core}
-        name={project.name} 
-        desc={project.desc}
-        completed={project.completed}
-        id={project.id}
-        link={project.link}
-    />)
-
-    if(!projectToTable.length){
-        return <p className={s.noProj}>Проектов пока нет. <NavLink to='/add-new-project'>Добавьте первый.</NavLink></p>
-    }
+    const projectToTable = targetProjects
+        .map(project => <AllProjItem 
+            key={project.id} 
+            core={project.core}
+            name={project.name} 
+            desc={project.desc}
+            completed={project.completed}
+            id={project.id}
+            link={project.link}
+            deleteProject={deleteProject}
+        />)
 
     return (
         <table className={s.table}>
@@ -45,8 +40,4 @@ const AllProjTable: FC<MapStatePropsType> = ({ projects }) => {
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    projects: state.projectsReducer.projects
-})
-
-export default connect(mapStateToProps)(AllProjTable)
+export default AllProjTable
