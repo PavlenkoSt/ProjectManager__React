@@ -16,6 +16,7 @@ type TaskItemContainerPropsType = {
     setDragStartOrder: Dispatch<SetStateAction<number>>
     dragStartId: number
     setDragStartId: Dispatch<SetStateAction<number>>
+    sortTasks: (a: any, b: any) => number
 }
 
 type MapStatePropsType = {
@@ -27,11 +28,11 @@ type MapDispatchPropsType = {
     changeCompletedStatus: (id: number, level: number) => void
     setCompletedStatus: (id: number, status: boolean, level: number) => void
     addNewTask: (task: string, level: number, idTask: number | null) => void
-    changeTaskOrder: (id: number, order: number) => void
+    changeTaskOrder: (id: number, order: number, level: number) => void
 }
 
 
-const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId}) => {
+const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId, sortTasks}) => {
 
     const [showSubtasks, setShowSubtasks] = useState(false)
 
@@ -47,12 +48,39 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
         })
         : []
 
-
-    const subtasksGenerate = subtasksFind.map(subtask => {
+    const subtasksGenerate = subtasksFind
+        .sort(sortTasks)
+        .map(subtask => {
         if(subtask && subtask.subsubtasksId && subtask.subsubtasksId.length){
-            return <TaskSubitemContainer key={subtask.id} id={subtask.id} text={subtask.text} subsubtasksId={subtask.subsubtasksId} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} />
+            return <TaskSubitemContainer 
+                key={subtask.id} 
+                id={subtask.id} 
+                order={subtask.order} 
+                text={subtask.text} 
+                subsubtasksId={subtask.subsubtasksId} 
+                deleteTask={deleteTask} 
+                changeCompletedStatus={changeCompletedStatus}
+                dragStartOrder={dragStartOrder}
+                setDragStartOrder={setDragStartOrder}
+                dragStartId={dragStartId}
+                setDragStartId={setDragStartId}
+            />
         }else{
-            return subtask && <TaskWithoutSub key={subtask.id} id={subtask.id} completed={subtask.completed} text={subtask.text} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} addNewTask={addNewTask} />
+            return subtask && <TaskWithoutSub 
+                key={subtask.id} 
+                id={subtask.id} 
+                completed={subtask.completed} 
+                text={subtask.text} 
+                order={subtask.order}
+                deleteTask={deleteTask} 
+                changeCompletedStatus={changeCompletedStatus} 
+                addNewTask={addNewTask} 
+                dragStartOrder={dragStartOrder}
+                setDragStartOrder={setDragStartOrder}
+                dragStartId={dragStartId}
+                setDragStartId={setDragStartId}
+                changeTaskOrder={changeTaskOrder}
+            />
         }
     })
 
@@ -92,8 +120,8 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
 
     const dropHandler = (e: any) => {
         e.preventDefault()
-        changeTaskOrder(dragStartId, order)
-        changeTaskOrder(id, dragStartOrder)
+        changeTaskOrder(dragStartId, order, 0)
+        changeTaskOrder(id, dragStartOrder, 0)
     }
 
     return <TaskItem

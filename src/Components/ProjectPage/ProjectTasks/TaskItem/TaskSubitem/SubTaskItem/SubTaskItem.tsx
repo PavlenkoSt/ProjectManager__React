@@ -20,7 +20,10 @@ const SubTaskItem: FC<SubTaskItemPropsType> = ({id,  text, completed, deleteTask
     }
 
     return (
-        <div className={s.subInnerTrigger}>
+        <div 
+            draggable='true' 
+            className={s.subInnerTrigger}
+        >
             <div className={s.subtaskItem} style={completed ? {textDecoration: 'line-through'} : {}}>- {text}</div>
             <div className={s.optionsBar}>
                 <button title={completed ? 'Отметить как невыполненное' : 'Отметить как выполеннное'} onClick={toggleCompletedStatus} className={`${s.completed} ${completed ? s.done : s.noDone}`}></button>

@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 import AddNewTaskForm from '../../../common/AddNewTaskForm/AddNewTaskForm'
 import s from './taskItem.module.css'
 
@@ -16,7 +16,7 @@ type TaskItemPropsType = {
     addNewTask: (task: string, level: number, idTask: number | null) => void
     createSubtasksMode: boolean
     changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
-    changeTaskOrder: (id: number, order: number) => void
+    changeTaskOrder: (id: number, order: number, level: number) => void
     dragStartHandler: (e: React.DragEvent<HTMLDivElement>) => void
     dragEndHandler: (e: React.DragEvent<HTMLDivElement>) => void
     dragOverHandler: (e: React.DragEvent<HTMLDivElement>) => void

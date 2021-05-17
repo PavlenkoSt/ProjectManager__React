@@ -40,6 +40,7 @@ const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId
             setDragStartOrder={setDragStartOrder}
             dragStartId={dragStartId}
             setDragStartId={setDragStartId}
+            sortTasks={sortTasks}
         />)
 
     return (

@@ -9,6 +9,7 @@
     font-weight: 600;
     color: #333;
     cursor: pointer;
+    width: calc(100% - 90px);
     transition: border .2s ease;
 }
 

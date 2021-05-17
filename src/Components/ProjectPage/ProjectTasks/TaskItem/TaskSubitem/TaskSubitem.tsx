@@ -13,14 +13,24 @@ type TaskSubitemPropsType = {
     changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
     setShowTask: Dispatch<SetStateAction<boolean>>
     createSubtasksMode: boolean
+    dragStartHandler: (e: React.DragEvent<HTMLDivElement>) => void
+    dragEndHandler: (e: React.DragEvent<HTMLDivElement>) => void
+    dragOverHandler: (e: React.DragEvent<HTMLDivElement>) => void
+    dropHandler: (e: React.DragEvent<HTMLDivElement>) => void
 }
 
-const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, showTask, isCompleted, subtasksGenerate, addSubtaskHandler, removeSubitem, addSubtaskFromLevel1, changeCreateSubtasksMode, setShowTask, createSubtasksMode }) => {
-
-   
+const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, showTask, isCompleted, subtasksGenerate, addSubtaskHandler, removeSubitem, addSubtaskFromLevel1, changeCreateSubtasksMode, setShowTask, createSubtasksMode, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
 
     return (
-        <div draggable='true' className={`${s.subitem} ${showTask ? s.show : ''}`}> 
+        <div 
+            draggable='true' 
+            className={`${s.subitem} ${showTask ? s.show : ''}`}
+            onDragStart={(e) => dragStartHandler(e)}
+            onDragLeave={(e) => dragEndHandler(e)}
+            onDragEnd={(e) => dragEndHandler(e)}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropHandler(e)}
+        > 
             <div className={s.innerTrigger}>
                 <div className={s.trigger} onClick={() => setShowTask(!showTask)} style={isCompleted ? {textDecoration: 'line-through'} : {}} >- {text}</div>
                 <div className={s.optionsBar}>

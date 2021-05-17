@@ -27,13 +27,13 @@ const initialValue = {
         {id: 5, forProject: 5, text: 'Сделать футер', order: 2, completed: true, subtasksId: []}
     ],
     subtasks: [
-        {id: 1, text: 'Написать html-разметку', completed: false, subsubtasksId: [1, 2]},
-        {id: 2, text: 'Написать стили', completed: true, subsubtasksId: []},
-        {id: 3, text: 'Сделать бургер-меню', completed: false, subsubtasksId: []},
+        {id: 1, text: 'Написать html-разметку', completed: false, order: 1, subsubtasksId: [1, 2]},
+        {id: 2, text: 'Написать стили', completed: true, order: 2, subsubtasksId: []},
+        {id: 3, text: 'Сделать бургер-меню', completed: false, order: 3, subsubtasksId: []},
     ],
     subsubtasks: [
-        {id: 1, text: 'Не забыть тег хедер', completed: true },
-        {id: 2, text: 'Прижать к верху страницы', completed: false },
+        {id: 1, text: 'Не забыть тег хедер', order: 1, completed: true },
+        {id: 2, text: 'Прижать к верху страницы', order: 1, completed: false },
     ]
 }
 
@@ -44,7 +44,7 @@ export const tasksActions = {
     changeCompletedStatus: (id: number, level: number) => ({ type: CHANGE_COMPLETED_STATUS, id, level }),
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
     addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId }),
-    changeTaskOrder: (id: number, order: number) => ({ type: CHANGE_TASK_ORDER, id, order})
+    changeTaskOrder: (id: number, order: number, level: number) => ({ type: CHANGE_TASK_ORDER, id, order, level})
 }
 
 type InitialValueType = typeof initialValue
@@ -135,6 +135,8 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
         case ADD_NEW_TASK: {
             switch(action.level){
                 case 0: {
+                    const subtasksOrders = state.subtasks.map(subtask => subtask.order)
+
                     const id = Date.now()
                     return {
                         ...state,
@@ -148,11 +150,14 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                             id,
                             text: action.task,
                             completed: false,
+                            order: Math.max(...subtasksOrders) + 1,
                             subsubtasksId: []
                         }]
                     }
                 }
                 case 1: {
+                    const subtasksOrders = state.subtasks.map(subtask => subtask.order)
+
                     const id = Date.now()
                     return {
                         ...state,
@@ -165,6 +170,7 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                         subsubtasks: [ ...state.subsubtasks, {
                             id,
                             text: action.task,
+                            order: Math.max(...subtasksOrders) + 1,
                             completed: false
                         }]
                     }
@@ -190,14 +196,41 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
             }
         }
         case CHANGE_TASK_ORDER: {
-            return {
-                ...state,
-                tasks: state.tasks.map(task => {
-                    if(task.id === action.id){
-                        task.order = action.order
+            switch(action.level){
+                case 0: {
+                    return {
+                        ...state,
+                        tasks: state.tasks.map(task => {
+                            if(task.id === action.id){
+                                task.order = action.order
+                            }
+                            return task
+                        })
                     }
-                    return task
-                })
+                }
+                case 1: {
+                    return {
+                        ...state,
+                        subtasks: state.subtasks.map(subtask => {
+                            if(subtask.id === action.id){
+                                subtask.order = action.order
+                            }
+                            return subtask
+                        })
+                    }
+                }
+                case 2: {
+                    return {
+                        ...state,
+                        subsubtasks: state.subsubtasks.map(subsubtask => {
+                            if(subsubtask.id === action.id){
+                                subsubtask.order = action.order
+                            }
+                            return subsubtask
+                        })
+                    }
+                }
+                default: return state
             }
         }
         default: return state
