@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { HashRouter, Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom'
 import './App.css'
 import AddNewProjectPage from './Components/AddNewProjectPage/AddNewProjectPage'
+import AllProjPage from './Components/AllProjPage/AllProjPage'
 import HeaderContainer from './Components/Header/HeaderContainer'
 import MainPage from './Components/MainPage/MainPage'
 import ProjectPage from './Components/ProjectPage/ProjectPage'
@@ -12,10 +13,10 @@ import store from './Redux/reduxStore'
 
 const App: FC<RouteComponentProps> = ({ location }) => {
   
-  let links = store.getState().projectsReducer.projects.map(project => '/' + project.link)
+  let links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: any) => '/' + project.link)
 
   useEffect(() => {
-    links = store.getState().projectsReducer.projects.map(project => '/' + project.link)
+    links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: any) => '/' + project.link)
   }, [location.pathname])
 
   return (
@@ -24,6 +25,7 @@ const App: FC<RouteComponentProps> = ({ location }) => {
       <Switch>
         {/* @ts-ignore */}
         <Route path={links} component={ProjectPage} />
+        <Route path='/all-projects' component={AllProjPage} />
         <Route path='/add-new-project' component={AddNewProjectPage} />
         <Route path='/' exact component={MainPage} />
       </Switch>

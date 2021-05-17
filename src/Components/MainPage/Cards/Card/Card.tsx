@@ -16,7 +16,7 @@ const Card: FC<CardPropsType> = ({ children, title, addProject }) => {
             </div>
             { !addProject && (
                 <div>
-                    <NavLink className={s.showAllLink} to='/'>Показать все...</NavLink>
+                    <NavLink className={s.showAllLink} to='/all-projects'>Показать все...</NavLink>
                 </div> 
             )}
         </div>

@@ -19,3 +19,12 @@
     margin: 15px auto;
     color: #333;
 }
+
+.desc{
+    padding: 0 15px;
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px 0;
+}

@@ -1,0 +1,17 @@
+.container{
+    margin-top: -60px;
+}
+
+.header{
+    text-align: center;
+    width: calc(100% - 160px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    color: #333;
+}
+
+.header h2{
+    margin: 0;
+}

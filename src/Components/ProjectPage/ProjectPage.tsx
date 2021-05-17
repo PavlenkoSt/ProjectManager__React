@@ -30,6 +30,7 @@ const ProjectPage: FC<RouteComponentProps & MapStatePropsType> = ({ location, pr
     return (
         <div className={s.container}>
             <h2 className={s.header}>{ `${targetProject.core} "${targetProject.name}"` }</h2>
+            { targetProject.desc && <div className={s.desc}>{targetProject.desc}</div> }
             <ProjectTasks projectId={targetProject.id}/>
             <AddTaskForm projectId={targetProject.id} />
         </div>
