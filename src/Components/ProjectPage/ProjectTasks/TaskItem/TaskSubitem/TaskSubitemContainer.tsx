@@ -54,10 +54,6 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
 
     const isCompleted = subtasksElems.every(subsubtasksId => subsubtasksId && subsubtasksId.completed)
 
-    useEffect(() => {
-        setCompletedStatus(id, isCompleted, 1)
-    }, [isCompleted])
-
     const removeSubitem = () => {
         deleteTask(id, 1, subsubtasksId)
     }
