@@ -44,3 +44,41 @@
 .linkArea a:hover{
     text-decoration: underline;
 }
+
+@media(max-width: 800px){
+    .header{
+        margin: 18px auto;
+    }
+    .header h2{
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 600px){
+    .header{
+        margin: 20px auto;
+    }
+    .header h2{
+        font-size: 16px;
+    }
+   
+}
+
+@media(max-width: 550px){
+    .header{
+        margin: 22px auto;
+    }
+    .header h2{
+        font-size: 14px;
+    }
+    .linkArea{
+        margin: 10px auto;
+        font-size: 13px;
+    }
+    .noProj{
+        margin: 30px auto;
+        font-size: 13px;
+        padding: 0 10px;
+    }
+}
+

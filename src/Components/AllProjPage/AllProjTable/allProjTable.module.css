@@ -76,3 +76,37 @@
 .green{
     color: rgb(0, 221, 0);
 }
+
+@media(max-width: 650px){
+    .table{
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 550px){
+    .table{
+        font-size: 12px;
+    }
+}
+
+@media(max-width: 450px){
+    .table{
+        font-size: 10px;
+    }
+}
+
+@media(max-width: 400px){
+    .table{
+        font-size: 9px;
+    }
+    .table td{
+        padding: 2px;
+    }
+}
+
+@media(max-width: 350px){
+    .table{
+        font-size: 8px;
+    }
+   
+}
