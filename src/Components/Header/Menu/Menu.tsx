@@ -11,8 +11,8 @@ type MenuPropsType = {
 const Menu: FC<MenuPropsType> = ({ openMenu, setOpenMenu }) => {
     return (
         <div className={`${s.menu} ${openMenu ? s.show : ''}`}>
-            <Projects activeMode={true}/>
-            <Projects activeMode={false}/>
+            <Projects openMenu={openMenu} activeMode={true}/>
+            <Projects openMenu={openMenu} activeMode={false}/>
             <NavLink onClick={() => setOpenMenu(false)} className={s.addNewProj} to='/add-new-project'>Добавить новый проект</NavLink>
         </div>
     )

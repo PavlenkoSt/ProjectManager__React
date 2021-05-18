@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import s from './projects.module.css'
 import ProjectItem from "./ProjectItem/ProjectItem"
@@ -7,15 +7,23 @@ import { AppStateType } from "../../../../Redux/reduxStore"
 
 type ProjectPropsType = {
     activeMode: boolean
+    openMenu: boolean
 }
 
 type MapStatePropsType = {
     projects: Array<ProjectType>
 }
 
-const Projects: FC<ProjectPropsType & MapStatePropsType> = ({ activeMode, projects }) => {
+const Projects: FC<ProjectPropsType & MapStatePropsType> = ({ activeMode, projects, openMenu }) => {
 
     const [ showList, setShowList ] = useState(false)
+
+    useEffect(() => {
+        if(openMenu === false){
+            setShowList(false)
+        }
+    }, [openMenu])
+
     const projectsItems = projects
         .filter(project => project.completed === !activeMode )
         .map(project => <ProjectItem key={project.id} name={project.name} link={project.link} />)
