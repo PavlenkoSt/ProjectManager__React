@@ -19,22 +19,9 @@ export type TaskType = {
 }
 
 const initialValue = {
-    tasks: [
-        {id: 1, forProject: 1, text: 'Сделать хедер', order: 1, completed: false, subtasksId: [1, 2, 3]},
-        {id: 2, forProject: 1, text: 'Сделать футер', order: 2, completed: true, subtasksId: []},
-        {id: 3, forProject: 1, text: 'Спасти Вселенную', order: 3, completed: true, subtasksId: []},
-        {id: 4, forProject: 5, text: 'Сделать хедер', order: 1, completed: false, subtasksId: []},
-        {id: 5, forProject: 5, text: 'Сделать футер', order: 2, completed: true, subtasksId: []}
-    ],
-    subtasks: [
-        {id: 1, text: 'Написать html-разметку', completed: false, order: 1, subsubtasksId: [1, 2]},
-        {id: 2, text: 'Написать стили', completed: true, order: 2, subsubtasksId: []},
-        {id: 3, text: 'Сделать бургер-меню', completed: false, order: 3, subsubtasksId: []},
-    ],
-    subsubtasks: [
-        {id: 1, text: 'Не забыть тег хедер', order: 1, completed: true },
-        {id: 2, text: 'Прижать к верху страницы', order: 1, completed: false },
-    ],
+    tasks: [] as Array<TaskType>,
+    subtasks: [] as Array<any>,
+    subsubtasks: []  as Array<any>,
 }
 
 export const tasksActions = {

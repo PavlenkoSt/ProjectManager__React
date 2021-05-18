@@ -15,13 +15,7 @@ export type ProjectType = {
 }
 
 const initialValue = {
-    projects: [
-        { id: 1, core: 'Project-manager', name: 'LazyKoala', completed: false, desc: '', link: 'project-manager-lazykoala'},
-        { id: 2, core: 'Mobile game', name: 'Scooby-Doo', completed: true, desc: 'Super-puper-duper mobile game. This game will occupate the million people heart ariund the World!', link: 'mobile-game-scooby-doo'},
-        { id: 3, core: 'SRM', name: 'Friendly Killer', completed: false, desc: '', link: 'srm-friendly-killer'},
-        { id: 4, core: 'Course', name: 'Youtube-star', completed: true, desc: '', link: 'course-youtube-star'},
-        { id: 5, core: 'Online store', name: 'Black-market', completed: false, desc: '', link: 'online-store-black-market'},
-    ] as Array<ProjectType>,
+    projects: [] as Array<ProjectType>,
     filterOption: 'all'
 }
 
