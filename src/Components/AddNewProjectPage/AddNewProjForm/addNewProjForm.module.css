@@ -73,3 +73,23 @@
 .item .input.errInp{
     border: 1px solid red;
 }
+
+@media(max-width: 550px){
+    .form{
+        padding: 0 5px;
+    }
+    .item{
+        margin-bottom: 25px;
+    }
+    .item label{
+        font-size: 12px;
+    }
+    .err{
+        font-size: 10px;
+        bottom: -15px;
+    }
+    .btn{
+        margin-top: 0;
+        font-size: 13px;
+    }
+}
