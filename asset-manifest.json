@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/checkList__React/static/css/main.63a3bee8.chunk.css",
-    "main.js": "/checkList__React/static/js/main.3d169f16.chunk.js",
-    "main.js.map": "/checkList__React/static/js/main.3d169f16.chunk.js.map",
-    "runtime-main.js": "/checkList__React/static/js/runtime-main.3363a539.js",
-    "runtime-main.js.map": "/checkList__React/static/js/runtime-main.3363a539.js.map",
-    "static/js/2.b6bf5255.chunk.js": "/checkList__React/static/js/2.b6bf5255.chunk.js",
-    "static/js/2.b6bf5255.chunk.js.map": "/checkList__React/static/js/2.b6bf5255.chunk.js.map",
-    "static/js/3.58430eb4.chunk.js": "/checkList__React/static/js/3.58430eb4.chunk.js",
-    "static/js/3.58430eb4.chunk.js.map": "/checkList__React/static/js/3.58430eb4.chunk.js.map",
+    "main.css": "/checkList__React/static/css/main.9dbd1594.chunk.css",
+    "main.js": "/checkList__React/static/js/main.74508322.chunk.js",
+    "main.js.map": "/checkList__React/static/js/main.74508322.chunk.js.map",
+    "runtime-main.js": "/checkList__React/static/js/runtime-main.de7caa39.js",
+    "runtime-main.js.map": "/checkList__React/static/js/runtime-main.de7caa39.js.map",
+    "static/js/2.b3801b6e.chunk.js": "/checkList__React/static/js/2.b3801b6e.chunk.js",
+    "static/js/2.b3801b6e.chunk.js.map": "/checkList__React/static/js/2.b3801b6e.chunk.js.map",
+    "static/js/3.285f02aa.chunk.js": "/checkList__React/static/js/3.285f02aa.chunk.js",
+    "static/js/3.285f02aa.chunk.js.map": "/checkList__React/static/js/3.285f02aa.chunk.js.map",
     "index.html": "/checkList__React/index.html",
-    "static/css/main.63a3bee8.chunk.css.map": "/checkList__React/static/css/main.63a3bee8.chunk.css.map",
-    "static/js/2.b6bf5255.chunk.js.LICENSE.txt": "/checkList__React/static/js/2.b6bf5255.chunk.js.LICENSE.txt",
+    "static/css/main.9dbd1594.chunk.css.map": "/checkList__React/static/css/main.9dbd1594.chunk.css.map",
+    "static/js/2.b3801b6e.chunk.js.LICENSE.txt": "/checkList__React/static/js/2.b3801b6e.chunk.js.LICENSE.txt",
     "static/media/subTaskItem.module.css": "/checkList__React/static/media/delete.b0cb71e8.svg",
     "static/media/addNewTaskForm.module.css": "/checkList__React/static/media/delete-white.6659e8b3.svg",
     "static/media/taskItem.module.css": "/checkList__React/static/media/down-arrow-grey.95d8388f.svg",
@@ -22,9 +22,9 @@
     "static/media/menu.module.css": "/checkList__React/static/media/plus.ec71cb0f.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.3363a539.js",
-    "static/js/2.b6bf5255.chunk.js",
-    "static/css/main.63a3bee8.chunk.css",
-    "static/js/main.3d169f16.chunk.js"
+    "static/js/runtime-main.de7caa39.js",
+    "static/js/2.b3801b6e.chunk.js",
+    "static/css/main.9dbd1594.chunk.css",
+    "static/js/main.74508322.chunk.js"
   ]
 }
