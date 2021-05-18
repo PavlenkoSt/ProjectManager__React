@@ -1,33 +1,14 @@
-import { FC, useEffect, useState } from "react"
-import { connect } from "react-redux"
+import { Dispatch, FC, SetStateAction } from "react"
 import s from './projects.module.css'
-import ProjectItem from "./ProjectItem/ProjectItem"
-import { ProjectType } from "../../../../Redux/projectsReducer"
-import { AppStateType } from "../../../../Redux/reduxStore"
 
 type ProjectPropsType = {
     activeMode: boolean
-    openMenu: boolean
+    projectsItems: Array<JSX.Element>
+    setShowList: Dispatch<SetStateAction<boolean>>
+    showList: boolean
 }
 
-type MapStatePropsType = {
-    projects: Array<ProjectType>
-}
-
-const Projects: FC<ProjectPropsType & MapStatePropsType> = ({ activeMode, projects, openMenu }) => {
-
-    const [ showList, setShowList ] = useState(false)
-
-    useEffect(() => {
-        if(openMenu === false){
-            setShowList(false)
-        }
-    }, [openMenu])
-
-    const projectsItems = projects
-        .filter(project => project.completed === !activeMode )
-        .map(project => <ProjectItem key={project.id} name={project.name} link={project.link} />)
-
+const Projects: FC<ProjectPropsType> = ({ activeMode, projectsItems, setShowList, showList }) => {
     return (
         <div className={`${s.container} ${showList ? s.active : ''}`}>
             <h2 className={s.header} onClick={() => setShowList(!showList)}> {activeMode ? 'Активные проекты' : 'Завершенные проекты'} <span>({projectsItems.length})</span> </h2>
@@ -38,8 +19,4 @@ const Projects: FC<ProjectPropsType & MapStatePropsType> = ({ activeMode, projec
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    projects: state.projectsReducer.projects
-})
-
-export default connect(mapStateToProps)(Projects)
+export default Projects
