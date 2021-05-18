@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom"
 import getProcentCompletedProj from "../../../../heplers/getProcentCompletedProj"
 import getSubTasksFromTasks from "../../../../heplers/getSubTasksFromTasks"
 import { AppStateType } from "../../../../Redux/reduxStore"
+import { tasksActions } from '../../../../Redux/tasksReducer'
 import s from '../allProjTable.module.css'
 
 
@@ -24,7 +25,11 @@ type MapStatePropsType = {
     subsubtasks: Array<any>
 }
 
-const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType> = ({ core, name, desc, completed, link, id, tasks, subtasks, subsubtasks, deleteProject }) => {
+type MapDispatchPropsType = {
+    deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
+}
+
+const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType & MapDispatchPropsType> = ({ core, name, desc, completed, link, id, tasks, subtasks, subsubtasks, deleteProject, deleteTask }) => {
 
     const targetTasks = tasks.filter(task => task.forProject === id)
     const targetSubtasks = getSubTasksFromTasks(targetTasks, subtasks)
@@ -38,6 +43,9 @@ const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType> = ({ core, name,
 
     const deleteItem = () => {
         deleteProject(id)
+        targetTasks.forEach(task => {
+            deleteTask(task.id, 0, task.subtasksId)
+        })
     }
 
     return (
@@ -60,4 +68,8 @@ const mapStateToProps = (state: AppStateType) => ({
     subsubtasks: state.tasksReducer.subsubtasks
 })
 
-export default connect(mapStateToProps)(AllProjItem)
+const mapDispatchToProps = {
+    deleteTask: tasksActions.deleteTask
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllProjItem)

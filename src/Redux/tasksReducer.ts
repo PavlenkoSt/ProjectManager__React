@@ -26,9 +26,7 @@ const initialValue = {
 }
 
 export const tasksActions = {
-    deleteTask: (id: number, level: number, subtasksId: Array<number> | null = null) => (
-        { type: DELETE_TASK, id, level, subtasksId}
-    ),
+    deleteTask: (id: number, level: number, subtasksId: Array<number> | null = null) => ({ type: DELETE_TASK, id, level, subtasksId}),
     changeCompletedStatus: (id: number, level: number) => ({ type: CHANGE_COMPLETED_STATUS, id, level }),
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
     addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId }),
