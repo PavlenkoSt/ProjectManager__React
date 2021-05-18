@@ -4,6 +4,7 @@
     align-items: center;
     padding: 2px;
     border: 1px solid transparent;
+    width: 100%;
 }
 
 .form.err{
@@ -21,7 +22,7 @@
     transition: all ease .2s;
     position: relative;
     height: 35px;
-    width: 250px;
+    width: 100%;
 }
 
 .input:focus{
@@ -31,9 +32,9 @@
 
 .errorMess{
     position: absolute;
-    bottom: 9px;
-    width: 100%;
-    left: 330px;
+    bottom: -20px;
+    left: 0;
+    display: inline-block;
     color: rgb(228, 0, 0);
     font-size: 12px;
     font-weight: 600;
@@ -62,13 +63,6 @@
     background-size: 20px;
 }
 
-@media(max-width: 750px){
-    .errorMess{
-        left: 0;
-        bottom: -20px;
-    }
-}
-
 @media(max-width: 600px){
     .input{
         height: 30px;
@@ -82,7 +76,6 @@
 
 @media(max-width: 450px){
     .input{
-        width: 150px;
         font-size: 13px;
     }
 }
