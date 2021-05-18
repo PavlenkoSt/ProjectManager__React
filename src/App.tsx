@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { HashRouter, Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom'
 import './App.css'
 import AddNewProjectPage from './Components/AddNewProjectPage/AddNewProjectPage'
-import AllProjPage from './Components/AllProjPage/AllProjPage'
+import AllProjPageContainer from './Components/AllProjPage/AllProjPageContainer'
 import HeaderContainer from './Components/Header/HeaderContainer'
 import MainPage from './Components/MainPage/MainPage'
 import ProjectPage from './Components/ProjectPage/ProjectPage'
@@ -25,7 +25,7 @@ const App: FC<RouteComponentProps> = ({ location }) => {
       <Switch>
         {/* @ts-ignore */}
         <Route path={links} component={ProjectPage} />
-        <Route path='/all-projects' component={AllProjPage} />
+        <Route path='/all-projects' component={AllProjPageContainer} />
         <Route path='/add-new-project' component={AddNewProjectPage} />
         <Route path='/' exact component={MainPage} />
       </Switch>
