@@ -1,33 +1,18 @@
 import { FC } from 'react'
-import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { projectsActions, ProjectType } from '../../Redux/projectsReducer'
-import { AppStateType } from '../../Redux/reduxStore'
+import { ProjectType } from '../../Redux/projectsReducer'
 import AllProjFilter from './AllProjFilter/AllProjFilter'
 import s from './allProjPage.module.css'
 import AllProjTable from './AllProjTable/AllProjTable'
 
-type MapStatePropsType = {
-    projects: Array<ProjectType>
+type AllProjPagePropsType = {
     filterOption: string
-}
-
-type MapDispatchPropsType = {
     deleteProject: (id: number) => void
     changeFilterOption: (filterOption: string) => void
+    targetProjects: Array<ProjectType>
 }
 
-const AllProjPage: FC<MapStatePropsType & MapDispatchPropsType> = ({ projects, filterOption, deleteProject, changeFilterOption }) => {
-
-    const targetProjects = projects.filter(project => {
-        if(filterOption === 'all'){
-            return project
-        }else if(filterOption === 'completed'){
-            return project.completed
-        }else{
-            return !project.completed
-        }
-    })
+const AllProjPage: FC<AllProjPagePropsType> = ({ targetProjects, filterOption, deleteProject, changeFilterOption }) => {
 
     return (
         <div className={s.container}>
@@ -49,14 +34,5 @@ const AllProjPage: FC<MapStatePropsType & MapDispatchPropsType> = ({ projects, f
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    projects: state.projectsReducer.projects,
-    filterOption: state.projectsReducer.filterOption
-})
 
-const mapDispatchToProps = {
-    deleteProject: projectsActions.deleteProject,
-    changeFilterOption: projectsActions.changeFilterOption
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllProjPage)
+export default AllProjPage
