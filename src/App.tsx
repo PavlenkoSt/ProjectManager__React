@@ -6,10 +6,8 @@ import AddNewProjectPage from './Components/AddNewProjectPage/AddNewProjectPage'
 import AllProjPageContainer from './Components/AllProjPage/AllProjPageContainer'
 import HeaderContainer from './Components/Header/HeaderContainer'
 import MainPage from './Components/MainPage/MainPage'
-import ProjectPage from './Components/ProjectPage/ProjectPage'
+import ProjectPageContainer from './Components/ProjectPage/ProjectPageContainer'
 import store from './Redux/reduxStore'
-
-
 
 const App: FC<RouteComponentProps> = ({ location }) => {
   
@@ -24,7 +22,7 @@ const App: FC<RouteComponentProps> = ({ location }) => {
       <HeaderContainer/>
       <Switch>
         {/* @ts-ignore */}
-        <Route path={links} component={ProjectPage} />
+        <Route path={links} component={ProjectPageContainer} />
         <Route path='/all-projects' component={AllProjPageContainer} />
         <Route path='/add-new-project' component={AddNewProjectPage} />
         <Route path='/' exact component={MainPage} />
