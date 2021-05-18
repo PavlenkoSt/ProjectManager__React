@@ -17,8 +17,6 @@
     overflow: hidden;
 }
 
-
-
 .innerTrigger:hover .optionsBar{
     width: 60px;
     border: 1px solid rgb(34, 34, 34);
@@ -129,4 +127,24 @@
     border: 1px solid rgb(34, 34, 34);
     border-left: none;
     background-color: rgb(168, 167, 167);
+}
+
+@media (max-width: 600px) {
+    .subitem{
+        margin-left: 10px;
+    }
+    .trigger{
+        font-size: 14px;
+        padding: 5px;
+        padding-right: 30px;
+    }
+    .trigger.withoutArr{
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 550px) {
+    .trigger{
+        font-size: 13px;
+    }
 }

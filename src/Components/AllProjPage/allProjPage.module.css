@@ -8,8 +8,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px auto;
+    margin: 0 auto;
     color: #333;
+    height: 60px;
 }
 
 .header h2{
@@ -46,18 +47,12 @@
 }
 
 @media(max-width: 800px){
-    .header{
-        margin: 18px auto;
-    }
     .header h2{
         font-size: 20px;
     }
 }
 
 @media(max-width: 600px){
-    .header{
-        margin: 20px auto;
-    }
     .header h2{
         font-size: 16px;
     }
@@ -65,9 +60,6 @@
 }
 
 @media(max-width: 550px){
-    .header{
-        margin: 22px auto;
-    }
     .header h2{
         font-size: 14px;
     }

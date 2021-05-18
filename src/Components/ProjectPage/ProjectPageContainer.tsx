@@ -13,8 +13,6 @@ type MapStatePropsType = {
 
 const ProjectPageContainer: FC< MapStatePropsType & RouteComponentProps> = ({ projects, location }) => {
 
-    console.log(projects);
-    
     const projectLink = location.pathname.match(/.+/)
     const project = projects.filter(project => {
         if(projectLink){

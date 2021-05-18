@@ -63,3 +63,19 @@
 .noDone{
     background: url(../../../../../../assets/icons/completed.svg) center no-repeat;
 }
+
+@media (max-width: 600px) {
+    .subtaskItem{
+        margin-left: 20px;
+    }
+    .subtaskItem{
+        font-size: 14px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 550px) {
+    .subtaskItem{
+        font-size: 13px;
+    }
+}
