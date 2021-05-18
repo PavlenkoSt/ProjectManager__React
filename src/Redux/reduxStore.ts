@@ -1,6 +1,5 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, compose } from 'redux'
 import projectsReducer from './projectsReducer'
-import createSagaMiddleware from 'redux-saga'
 import tasksReducer from './tasksReducer'
 
 const rootReducer = combineReducers({
@@ -16,8 +15,6 @@ export type ActionTypes<T extends {[key: string] : (...args: any) => any}> = Ret
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-const sageMiddleware = createSagaMiddleware()
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sageMiddleware)))
-
+const store = createStore(rootReducer, composeEnhancers())
 
 export default store

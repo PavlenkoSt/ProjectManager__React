@@ -4,6 +4,7 @@ import { ActionTypes } from "./reduxStore"
 const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT'
 const DELETE_PROJECT = 'DELETE_PROJECT'
 const CHANGE_FILTER_OPTION = 'CHANGE_FILTER_OPTION'
+const SET_PROJECTS_FROM_LS = 'SET_PROJECTS_FROM_LS'
 
 export type ProjectType = {
     id: number
@@ -22,7 +23,8 @@ const initialValue = {
 export const projectsActions = {
     addNewProject: (name: string, core: string, desc: string) => ({ type: ADD_NEW_PROJECT, name, core, desc }),
     deleteProject: (id: number) => ({ type: DELETE_PROJECT, id }),
-    changeFilterOption : (filterOption: string) => ({ type: CHANGE_FILTER_OPTION, filterOption })
+    changeFilterOption : (filterOption: string) => ({ type: CHANGE_FILTER_OPTION, filterOption }),
+    setProjectsFromLS: (projects: Array<ProjectType>) => ({ type: SET_PROJECTS_FROM_LS, projects })
 }
 
 type InitialValueType = typeof initialValue
@@ -54,6 +56,12 @@ const projectsReducer = (state = initialValue, action: any): InitialValueType =>
             return {
                 ...state,
                 filterOption: action.filterOption
+            }
+        }
+        case SET_PROJECTS_FROM_LS: {
+            return {
+                ...state,
+                projects: action.projects
             }
         }
         default: return state

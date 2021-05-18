@@ -8,6 +8,7 @@ const CHANGE_COMPLETED_STATUS = 'CHANGE_COMPLETED_STATUS'
 const SET_COMPLETED_STATUS = 'SET_COMPLETED_STATUS'
 const ADD_NEW_TASK = 'ADD_NEW_TASK'
 const CHANGE_TASK_ORDER = 'CHANGE_TASK_ORDER'
+const SET_TASKS_FROM_LS = 'SET_TASKS_FROM_LS'
 
 export type TaskType = {
     id: number
@@ -32,6 +33,7 @@ export const tasksActions = {
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
     addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId }),
     changeTaskOrder: (id: number, order: number, level: number) => ({ type: CHANGE_TASK_ORDER, id, order, level}),
+    setTasksFromLS: ( tasks: Array<any>, level: number ) => ({ type: SET_TASKS_FROM_LS, tasks, level })
 }
 
 type InitialValueType = typeof initialValue
@@ -214,6 +216,29 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                             }
                             return subsubtask
                         })
+                    }
+                }
+                default: return state
+            }
+        }
+        case SET_TASKS_FROM_LS: {
+            switch(action.level){
+                case 0: {
+                    return {
+                        ...state,
+                        tasks: action.tasks
+                    }
+                }
+                case 1: {
+                    return {
+                        ...state,
+                        subtasks: action.tasks
+                    }
+                }
+                case 2: {
+                    return {
+                        ...state,
+                        subsubtasks: action.tasks
                     }
                 }
                 default: return state
