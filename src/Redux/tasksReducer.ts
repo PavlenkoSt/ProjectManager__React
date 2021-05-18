@@ -8,7 +8,6 @@ const CHANGE_COMPLETED_STATUS = 'CHANGE_COMPLETED_STATUS'
 const SET_COMPLETED_STATUS = 'SET_COMPLETED_STATUS'
 const ADD_NEW_TASK = 'ADD_NEW_TASK'
 const CHANGE_TASK_ORDER = 'CHANGE_TASK_ORDER'
-const SAVE_LAST_ID_AND_ORDER = 'SAVE_LAST_ID_AND_ORDER'
 
 export type TaskType = {
     id: number
@@ -36,10 +35,6 @@ const initialValue = {
         {id: 1, text: 'Не забыть тег хедер', order: 1, completed: true },
         {id: 2, text: 'Прижать к верху страницы', order: 1, completed: false },
     ],
-    helperData: {
-        saveLastId: 0,
-        saveLaseOrder: 0
-    }
 }
 
 export const tasksActions = {
@@ -50,7 +45,6 @@ export const tasksActions = {
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
     addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId }),
     changeTaskOrder: (id: number, order: number, level: number) => ({ type: CHANGE_TASK_ORDER, id, order, level}),
-    saveLastIdAndOrder: (id: number, order: number) => ({ type: SAVE_LAST_ID_AND_ORDER, id, order })
 }
 
 type InitialValueType = typeof initialValue
@@ -236,15 +230,6 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                     }
                 }
                 default: return state
-            }
-        }
-        case SAVE_LAST_ID_AND_ORDER: {
-            return {
-                ...state,
-                helperData: {
-                    saveLastId: action.id,
-                    saveLaseOrder: action.order
-                }
             }
         }
         default: return state

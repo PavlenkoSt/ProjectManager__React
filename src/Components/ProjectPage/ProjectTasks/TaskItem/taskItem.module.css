@@ -127,6 +127,12 @@
     background-color: rgb(168, 167, 167);
 }
 
+@media(max-width: 750px){
+    .subForm{
+        padding-bottom: 20px;
+    }
+}
+
 @media (max-width: 600px) {
     .target{
         font-size: 14px;

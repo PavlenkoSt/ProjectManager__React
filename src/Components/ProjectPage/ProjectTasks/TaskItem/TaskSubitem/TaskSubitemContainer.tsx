@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { AppStateType } from "../../../../../Redux/reduxStore"
 import { tasksActions } from "../../../../../Redux/tasksReducer"
@@ -13,10 +13,6 @@ type TaskSubitemContainerPropsType = {
     completed: boolean
     deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
     changeCompletedStatus: (id: number, level: number) => void
-    dragStartOrder: number
-    setDragStartOrder: Dispatch<SetStateAction<number>>
-    dragStartId: number
-    setDragStartId: Dispatch<SetStateAction<number>>
 }
 
 type MapStatePropsType = {
@@ -26,10 +22,9 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     setCompletedStatus: (id: number, status: boolean, level: number) => void
     addNewTask: (task: string, level: number, idTask: number | null) => void 
-    changeTaskOrder: (id: number, order: number, level: number) => void
 }
 
-const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({ id, text, order, subsubtasksId, completed, subsubtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder, dragStartOrder, setDragStartOrder, dragStartId, setDragStartId }) => {
+const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({ id, text, subsubtasksId, completed, subsubtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask }) => {
     const [showTask, setShowTask] = useState(false)
 
     const [createSubtasksMode, changeCreateSubtasksMode] = useState(false)
@@ -67,44 +62,6 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         deleteTask(id, 1, subsubtasksId)
     }
 
-    // ============ drag and drop =============
-    const dragStartHandler = (e: any) => {
-        
-        setDragStartId(id)
-        setDragStartOrder(order)
-        e.target.style.opacity = '0.5'
-    }
-
-    const dragEndHandler = (e: any) => {
-        e.target.style.opacity = '1'
-        if(e.target.classList.contains('taskSubitem_dragOver__1gUGU')){
-            e.target.classList.remove('taskSubitem_dragOver__1gUGU')
-        }else{
-            const childsArr = document.querySelectorAll('.taskSubitem_dragOver__1gUGU')
-            if(childsArr.length){
-                childsArr.forEach(child => child.classList.remove('taskSubitem_dragOver__1gUGU'))
-            }
-        }
-    }
-
-    const dragOverHandler = (e: any) => {
-        e.preventDefault()
-        if(e.target.classList.contains('taskSubitem_trigger__3h9-7')){
-            e.target.classList.add('taskSubitem_dragOver__1gUGU')
-        }
-        
-    }
-
-    const dropHandler = (e: any) => {
-        e.preventDefault()
-        changeTaskOrder(dragStartId, order, 1)
-        changeTaskOrder(id, dragStartOrder, 1)
-        // console.log(helperData);
-
-        // console.log(dragStartId, order);
-        // console.log(id, dragStartOrder);
-    }
-
     return <TaskSubitem 
         text={text} 
         completed={completed}
@@ -117,10 +74,6 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         changeCreateSubtasksMode={changeCreateSubtasksMode}
         setShowTask={setShowTask}
         createSubtasksMode={createSubtasksMode}
-        dragStartHandler={dragStartHandler}
-        dragEndHandler={dragEndHandler}
-        dragOverHandler={dragOverHandler}
-        dropHandler={dropHandler}
         toggleCompletedStatus={toggleCompletedStatus}
     />
 }
@@ -132,7 +85,6 @@ const mapStateToProps = (state: AppStateType) => ({
 const mapDispatchToProps = {
     setCompletedStatus: tasksActions.setCompletedStatus,
     addNewTask: tasksActions.addNewTask,
-    changeTaskOrder: tasksActions.changeTaskOrder,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskSubitemContainer)

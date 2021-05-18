@@ -1,5 +1,3 @@
-import { TaskType } from "../Redux/tasksReducer"
-
 const removeTaskAndAllSubtasks = (tasks: Array<any>, removeId: number, subtasks: any, subsubtasks: any = null) => {
     const filteredTasks = tasks.filter(task => task.id === removeId) || subtasks.filter((task: any) => task.id === removeId)
     const subtasksId = filteredTasks[0].subtasksId || filteredTasks[0].subsubtasksId

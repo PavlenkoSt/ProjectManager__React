@@ -61,3 +61,28 @@
     background: url(../../../assets/icons/delete-white.svg) center no-repeat #333;
     background-size: 20px;
 }
+
+@media(max-width: 750px){
+    .errorMess{
+        left: 0;
+        bottom: -20px;
+    }
+}
+
+@media(max-width: 600px){
+    .input{
+        height: 30px;
+    }
+
+    .btn{
+        height: 30px;
+        width: 30px;
+    }
+}
+
+@media(max-width: 450px){
+    .input{
+        width: 150px;
+        font-size: 13px;
+    }
+}
