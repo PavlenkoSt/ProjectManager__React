@@ -68,8 +68,8 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
     }
 
     // ============ drag and drop =============
-
     const dragStartHandler = (e: any) => {
+        
         setDragStartId(id)
         setDragStartOrder(order)
         e.target.style.opacity = '0.5'
@@ -99,7 +99,8 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         e.preventDefault()
         changeTaskOrder(dragStartId, order, 1)
         changeTaskOrder(id, dragStartOrder, 1)
-        console.log(id, order);
+        // console.log(helperData);
+
         // console.log(dragStartId, order);
         // console.log(id, dragStartOrder);
     }
@@ -125,13 +126,13 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
 }
 
 const mapStateToProps = (state: AppStateType) => ({
-    subsubtasks: state.tasksReducer.subsubtasks
+    subsubtasks: state.tasksReducer.subsubtasks,
 })
 
 const mapDispatchToProps = {
     setCompletedStatus: tasksActions.setCompletedStatus,
     addNewTask: tasksActions.addNewTask,
-    changeTaskOrder: tasksActions.changeTaskOrder
+    changeTaskOrder: tasksActions.changeTaskOrder,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskSubitemContainer)

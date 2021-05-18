@@ -62,3 +62,9 @@
     transform: translateX(-50%);
     cursor: default;
 }
+
+@media(max-width: 430px){
+    .list li a{
+        font-size: 14px;
+    }
+}

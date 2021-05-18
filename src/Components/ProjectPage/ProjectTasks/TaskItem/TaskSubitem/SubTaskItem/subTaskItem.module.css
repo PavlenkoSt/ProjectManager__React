@@ -5,6 +5,7 @@
 .subtaskItem{
     margin-left: 40px;
     padding: 5px 10px;
+    width: calc(100% - 130px);
     border: 1px solid transparent;
     font-weight: 600;
     color: #333;

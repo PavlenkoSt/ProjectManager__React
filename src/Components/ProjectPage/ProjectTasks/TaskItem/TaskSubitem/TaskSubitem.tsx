@@ -27,13 +27,13 @@ const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, showTask, isCompleted, co
 
     return (
         <div 
-            draggable='true' 
-            className={`${s.subitem} ${showTask ? s.show : ''}`}
             onDragStart={(e) => dragStartHandler(e)}
             onDragLeave={(e) => dragEndHandler(e)}
             onDragEnd={(e) => dragEndHandler(e)}
             onDragOver={(e) => dragOverHandler(e)}
             onDrop={(e) => dropHandler(e)}
+            draggable='true' 
+            className={`${s.subitem} ${showTask ? s.show : ''}`}
         > 
             <div className={s.innerTrigger}>
                 <div className={`${s.trigger} ${!subtasksGenerate?.length ? s.withoutArr : ''}`} onClick={() => setShowTask(!showTask)} style={completedSubtask ? {textDecoration: 'line-through'} : {}} >- {text}</div>

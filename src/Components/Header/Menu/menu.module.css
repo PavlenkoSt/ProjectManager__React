@@ -6,6 +6,7 @@
     transition: height .3s ease;
     overflow: hidden;
     padding: 0 10px;
+    border-bottom-right-radius: 80px;
 }
 
 .menu.show{
@@ -24,6 +25,7 @@
     transition: color .2s ease;
     position: relative;
     display: flex;
+    margin-bottom: 60px;
 }
 
 .addNewProj::after{
@@ -38,4 +40,10 @@
 
 .addNewProj:hover{
     color: #fff;
+}
+
+@media(max-width: 301px){
+    .menu{
+        width: 100%;
+    }
 }

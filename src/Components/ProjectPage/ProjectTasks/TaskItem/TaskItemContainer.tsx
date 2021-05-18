@@ -28,10 +28,11 @@ type MapDispatchPropsType = {
     setCompletedStatus: (id: number, status: boolean, level: number) => void
     addNewTask: (task: string, level: number, idTask: number | null) => void
     changeTaskOrder: (id: number, order: number, level: number) => void
+    saveLastIdAndOrder: (id: number, order: number) => void
 }
 
 
-const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId, sortTasks}) => {
+const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId, sortTasks, saveLastIdAndOrder}) => {
 
     const [showSubtasks, setShowSubtasks] = useState(false)
 
@@ -140,7 +141,8 @@ const mapDispatchToProps = {
     changeCompletedStatus: tasksActions.changeCompletedStatus,
     setCompletedStatus: tasksActions.setCompletedStatus,
     addNewTask: tasksActions.addNewTask,
-    changeTaskOrder: tasksActions.changeTaskOrder
+    changeTaskOrder: tasksActions.changeTaskOrder,
+    saveLastIdAndOrder: tasksActions.saveLastIdAndOrder
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskItemContainer)

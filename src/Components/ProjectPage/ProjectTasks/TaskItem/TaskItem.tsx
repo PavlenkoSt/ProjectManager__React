@@ -49,7 +49,8 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
             onDragEnd={(e) => dragEndHandler(e)}
             onDragOver={(e) => dragOverHandler(e)}
             onDrop={(e) => dropHandler(e)}
-            draggable='true' className={`${s.item} ${subsubtasksId?.length && showSubtasks ? s.show : ''} ${!subsubtasksId?.length ? s.without : ''}`}
+            draggable='true' 
+            className={`${s.item} ${subsubtasksId?.length && showSubtasks ? s.show : ''} ${!subsubtasksId?.length ? s.without : ''}`}
         >
             <div className={s.innerTrigger}>
                 <div className={s.target} onClick={() => setShowSubtasks(!showSubtasks)} style={isCompleted ? {textDecoration: 'line-through'} : {}}>- {text}</div>
