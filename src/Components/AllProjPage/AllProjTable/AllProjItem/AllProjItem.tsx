@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { toast } from "react-toastify"
 import getProcentCompletedProj from "../../../../heplers/getProcentCompletedProj"
 import getSubTasksFromTasks from "../../../../heplers/getSubTasksFromTasks"
 import { AppStateType } from "../../../../Redux/reduxStore"
@@ -45,6 +46,15 @@ const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType & MapDispatchProp
         deleteProject(id)
         targetTasks.forEach(task => {
             deleteTask(task.id, 0, task.subtasksId)
+        })
+        toast.dark("Проект успешно удален!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
         })
     }
 

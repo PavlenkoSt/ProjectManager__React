@@ -1,4 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
 import AddNewTaskForm from '../../../common/AddNewTaskForm/AddNewTaskForm'
 import s from './taskItem.module.css'
 
@@ -27,6 +28,15 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
 
     const addSubtaskFromLevel0 = (task: string) => {
         addNewTask(task, 0, id)
+        toast.dark("Подзадача успешно добавлена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     const addSubtaskHandler = () => {
@@ -35,11 +45,29 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
     }
 
     const removeTask = () => {
-        deleteTask(id, 0, subsubtasksId as null | Array<number>)
+        deleteTask(id, 0, subsubtasksId as null | Array<number>);
+        toast.dark("Задача успешно удалена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     const toggleCompletedStatus = () => {
         changeCompletedStatus(id, 0)
+        toast.dark(completed ? 'Невыполнено!' : 'Выполнено!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     return (
@@ -64,6 +92,9 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
                 {showSubtasks && subtasksGenerate.length ? subtasksGenerate : ''}
                 { createSubtasksMode && <div className={s.subForm}><AddNewTaskForm addSubtask={addSubtaskFromLevel0} changeCreateSubtasksMode={changeCreateSubtasksMode} setShowSubtasks={setShowSubtasks} /></div> }
             </div>
+            {/* <div style={{position: 'fixed', top: 0, left: 0}}>
+                <ToastContainer/>
+            </div> */}
         </div>
     )
 }

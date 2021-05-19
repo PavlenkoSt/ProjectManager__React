@@ -32,6 +32,7 @@ const AllProjPageContainer: FC<AllProjPageContainerPropsType & MapStatePropsType
 
     return <AllProjPage 
         targetProjects={targetProjects}
+        allProjects={projects}
         filterOption={filterOption}
         deleteProject={deleteProject}
         changeFilterOption={changeFilterOption}

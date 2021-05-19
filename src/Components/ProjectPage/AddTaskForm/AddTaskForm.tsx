@@ -5,6 +5,7 @@ import s2 from '../../common/AddNewTaskForm/addNewTaskForm.module.css'
 import { tasksActions } from "../../../Redux/tasksReducer"
 import { connect } from "react-redux"
 import { AppStateType } from "../../../Redux/reduxStore"
+import { toast } from "react-toastify"
 
 type MapDispatchPropsType = {   
     addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => void
@@ -41,6 +42,15 @@ const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTa
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         addNewTask(values.newTask, -1, null, projectId)
+                        toast.dark("Задача успешно добавлена!", {
+                            position: "top-right",
+                            autoClose: 1500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        })
                         setOpenForm(false)
                         setSubmitting(false)
                     }}

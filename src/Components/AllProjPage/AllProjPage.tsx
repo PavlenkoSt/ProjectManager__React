@@ -10,26 +10,29 @@ type AllProjPagePropsType = {
     deleteProject: (id: number) => void
     changeFilterOption: (filterOption: string) => void
     targetProjects: Array<ProjectType>
+    allProjects: Array<ProjectType>
 }
 
-const AllProjPage: FC<AllProjPagePropsType> = ({ targetProjects, filterOption, deleteProject, changeFilterOption }) => {
+const AllProjPage: FC<AllProjPagePropsType> = ({ targetProjects, allProjects, filterOption, deleteProject, changeFilterOption }) => {
+
+    const noProj = !allProjects.length
+        ? <p className={s.noProj}>Проектов пока нет. <NavLink to='/add-new-project'>Добавьте первый.</NavLink></p> 
+        : <p className={s.noProj}>Проектов по даному фильтру нет. Попробуйте другой.</p>
 
     return (
         <div className={s.container}>
             <div className={s.header}>
                 <h2>Все проекты</h2>
             </div>
+            <AllProjFilter filterOption={filterOption} changeFilterOption={changeFilterOption}/>
             { targetProjects.length ? (
                 <>
-                    <AllProjFilter filterOption={filterOption} changeFilterOption={changeFilterOption}/>
                     <AllProjTable targetProjects={targetProjects} deleteProject={deleteProject}/>
                     <div className={s.linkArea}>
                         <NavLink to='/add-new-project'>Добавить новый проект</NavLink>
                     </div>
                 </>
-            ) : (
-                <p className={s.noProj}>Проектов пока нет. <NavLink to='/add-new-project'>Добавьте первый.</NavLink></p>
-            ) }
+            ) : noProj }
         </div>
     )
 }

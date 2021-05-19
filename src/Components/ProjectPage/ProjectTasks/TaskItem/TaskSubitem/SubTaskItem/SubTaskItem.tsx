@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { toast } from 'react-toastify'
 import s from './subTaskItem.module.css'
 
 type SubTaskItemPropsType = {
@@ -13,10 +14,28 @@ const SubTaskItem: FC<SubTaskItemPropsType> = ({id,  text, completed, deleteTask
 
     const removeSubtaskItem = () => {
         deleteTask(id, 2, null)
+        toast.dark("Подподзадача успешно удалена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     const toggleCompletedStatus = () => {
         changeCompletedStatus(id, 2)
+        toast.dark(completed ? 'Невыполнено!' : 'Выполнено!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     return (

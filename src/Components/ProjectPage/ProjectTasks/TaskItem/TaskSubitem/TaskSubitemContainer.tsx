@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import { connect } from "react-redux"
+import { toast } from "react-toastify"
 import { AppStateType } from "../../../../../Redux/reduxStore"
 import { tasksActions } from "../../../../../Redux/tasksReducer"
 import SubTaskItem from "./SubTaskItem/SubTaskItem"
@@ -31,6 +32,15 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
 
     const addSubtaskFromLevel1 = (task: string) => {
         addNewTask(task, 1, id)
+        toast.dark("Подподзадача успешно добавлена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     const addSubtaskHandler = () => {
@@ -40,6 +50,15 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
 
     const toggleCompletedStatus = () => {
         changeCompletedStatus(id, 1)
+        toast.dark(completed ? 'Невыполнено!' : 'Выполнено!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     const subtasksElems = subsubtasksId.map((subtaskId: any) => {
@@ -56,6 +75,15 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
 
     const removeSubitem = () => {
         deleteTask(id, 1, subsubtasksId)
+        toast.dark("Подзадача успешно удалена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
     return <TaskSubitem 

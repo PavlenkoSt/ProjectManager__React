@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import { FC, useEffect } from "react"
 import { connect } from "react-redux"
 import { RouteComponentProps, withRouter } from "react-router"
+import { toast } from "react-toastify"
 import constructLinkFromProjectName from "../../../heplers/constructLinkFromProjectName"
 import isUniqueProjectName from "../../../heplers/isUniqueProjectName"
 import { projectsActions, ProjectType } from "../../../Redux/projectsReducer"
@@ -35,6 +36,16 @@ const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType & RouteCompone
             }}
             onSubmit={(values, { setSubmitting }) => {
                 addNewProj(values.name, values.title, values.desc)
+                setSubmitting(false)
+                toast.dark("Проект успешно добавлен!", {
+                    position: "top-right",
+                    autoClose: 1500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
                 history.push(`${constructLinkFromProjectName(values.title)}-${constructLinkFromProjectName(values.name)}`)                
             }}
         >

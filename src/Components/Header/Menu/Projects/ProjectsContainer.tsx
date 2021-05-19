@@ -25,6 +25,14 @@ const ProjectsContainer: FC<ProjectsContainerPropsType & MapStatePropsType> = ({
         }
     }, [openMenu])
 
+    const setShowListHandler = () => {
+        if(projectsItems.length){
+            setShowList(!showList)
+        }else{
+            setShowList(false)
+        }
+    }
+
     const projectsItems = projects
         .filter(project => project.completed === !activeMode )
         .map(project => <ProjectItem key={project.id} setOpenMenu={setOpenMenu} name={project.name} link={project.link} />)
@@ -32,7 +40,7 @@ const ProjectsContainer: FC<ProjectsContainerPropsType & MapStatePropsType> = ({
     return <Projects 
         activeMode={activeMode} 
         projectsItems={projectsItems}
-        setShowList={setShowList}
+        setShowList={setShowListHandler}
         showList={showList}
     />
 }
