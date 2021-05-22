@@ -122,8 +122,6 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
         case ADD_NEW_TASK: {
             switch(action.level){
                 case 0: {
-                    const subtasksOrders = state.subtasks.map(subtask => subtask.order)
-
                     const id = Date.now()
                     return {
                         ...state,
@@ -137,14 +135,11 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                             id,
                             text: action.task,
                             completed: false,
-                            order: Math.max(...subtasksOrders) + 1,
                             subsubtasksId: []
                         }]
                     }
                 }
                 case 1: {
-                    const subsubtasksOrders = state.subsubtasks.map(subsubtask => subsubtask.order)
-
                     const id = Date.now()
                     return {
                         ...state,
@@ -157,7 +152,6 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                         subsubtasks: [ ...state.subsubtasks, {
                             id,
                             text: action.task,
-                            order: Math.max(...subsubtasksOrders) + 1,
                             completed: false
                         }]
                     }
