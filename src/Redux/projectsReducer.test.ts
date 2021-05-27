@@ -1,4 +1,4 @@
-import projectsReducer, {projectsActions} from './projectsReducer'
+import projectsReducer, {ADD_NEW_PROJECT, projectsActions} from './projectsReducer'
 
 const state = {
     projects: [
@@ -7,6 +7,21 @@ const state = {
     ],
     filterOption: 'all'
 }
+
+describe('actions', () => {
+    it('should create an action to add new project', () => {
+      const name = 'some name'
+      const core = 'some core'
+      const desc = 'some desc'
+      const expectedAction = {
+        type: ADD_NEW_PROJECT,
+        name,
+        core,
+        desc
+      }
+      expect(projectsActions.addNewProject('some name', 'some core', 'some desc')).toEqual(expectedAction)
+    })
+  })
 
 it('projects length should be increment', () => {
     const action = projectsActions.addNewProject('name', 'core', '')

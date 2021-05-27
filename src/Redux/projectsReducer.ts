@@ -1,10 +1,10 @@
 import constructLinkFromProjectName from "../heplers/constructLinkFromProjectName"
 import { ActionTypes } from "./reduxStore"
 
-const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT'
-const DELETE_PROJECT = 'DELETE_PROJECT'
-const CHANGE_FILTER_OPTION = 'CHANGE_FILTER_OPTION'
-const SET_PROJECTS_FROM_LS = 'SET_PROJECTS_FROM_LS'
+export const ADD_NEW_PROJECT = 'ADD_NEW_PROJECT'
+export const DELETE_PROJECT = 'DELETE_PROJECT'
+export const CHANGE_FILTER_OPTION = 'CHANGE_FILTER_OPTION'
+export const SET_PROJECTS_FROM_LS = 'SET_PROJECTS_FROM_LS'
 
 export type ProjectType = {
     id: number
