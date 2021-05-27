@@ -161,7 +161,6 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                         .filter(task => task.forProject === action.projectId)
                         .map(task => task.order)
                     const currentOrder = orders.length && orders[0] !== null ? Math.max(...orders) + 1 : 0
-                    debugger
                     return {
                         ...state,
                         tasks: [...state.tasks, {
