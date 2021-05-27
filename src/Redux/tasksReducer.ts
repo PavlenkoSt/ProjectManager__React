@@ -3,12 +3,12 @@ import removeSubtaskNum from "../heplers/removeSubtaskNum"
 import removeTaskAndAllSubtasks from "../heplers/removeTaskAndAllSubtasks"
 import { ActionTypes } from "./reduxStore"
 
-const DELETE_TASK = 'DELETE_TASK'
-const CHANGE_COMPLETED_STATUS = 'CHANGE_COMPLETED_STATUS'
-const SET_COMPLETED_STATUS = 'SET_COMPLETED_STATUS'
-const ADD_NEW_TASK = 'ADD_NEW_TASK'
-const CHANGE_TASK_ORDER = 'CHANGE_TASK_ORDER'
-const SET_TASKS_FROM_LS = 'SET_TASKS_FROM_LS'
+export const DELETE_TASK = 'DELETE_TASK'
+export const CHANGE_COMPLETED_STATUS = 'CHANGE_COMPLETED_STATUS'
+export const SET_COMPLETED_STATUS = 'SET_COMPLETED_STATUS'
+export const ADD_NEW_TASK = 'ADD_NEW_TASK'
+export const CHANGE_TASK_ORDER = 'CHANGE_TASK_ORDER'
+export const SET_TASKS_FROM_LS = 'SET_TASKS_FROM_LS'
 
 export type TaskType = {
     id: number
