@@ -167,7 +167,7 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
                             forProject: action.projectId,
                             text: action.task,
                             completed: false,
-                            order: Math.max(...orders) + 1 || 0,
+                            order: orders.length ? Math.max(...orders) + 1 : 0,
                             subtasksId: []
                         }]
                     }
