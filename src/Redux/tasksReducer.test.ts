@@ -63,7 +63,7 @@ describe('actions', () => {
             order: 0,
             level: 0,
         }
-      expect(tasksActions.changeTaskOrder(0, 0, 0)).toEqual(expectedAction)
+      expect(tasksActions.changeTaskOrder(0, 0)).toEqual(expectedAction)
     })
 
     it('should create an action to set tasks from local storage', () => {
@@ -133,7 +133,7 @@ describe('reducers', () => {
     })
     
     it('tasks order should be changed', () => {
-        const action = tasksActions.changeTaskOrder(1, 3, 0)
+        const action = tasksActions.changeTaskOrder(1, 3)
         const modernizedStateTasks = tasksReducer(state, action)
         expect(modernizedStateTasks.tasks[0].order).toBe(3)
     })

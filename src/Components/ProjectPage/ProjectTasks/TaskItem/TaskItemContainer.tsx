@@ -27,7 +27,7 @@ type MapDispatchPropsType = {
     changeCompletedStatus: (id: number, level: number) => void
     setCompletedStatus: (id: number, status: boolean, level: number) => void
     addNewTask: (task: string, level: number, idTask: number | null) => void
-    changeTaskOrder: (id: number, order: number, level: number) => void
+    changeTaskOrder: (id: number, order: number) => void
 }
 
 
@@ -100,8 +100,8 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
 
     const dropHandler = (e: any) => {
         e.preventDefault()
-        changeTaskOrder(dragStartId, order, 0)
-        changeTaskOrder(id, dragStartOrder, 0)
+        changeTaskOrder(dragStartId, order)
+        changeTaskOrder(id, dragStartOrder)
         
     }
 
@@ -119,7 +119,6 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
         addNewTask={addNewTask}
         createSubtasksMode={createSubtasksMode}
         changeCreateSubtasksMode={changeCreateSubtasksMode}
-        changeTaskOrder={changeTaskOrder}
         dragStartHandler={dragStartHandler}
         dragEndHandler={dragEndHandler}
         dragOverHandler={dragOverHandler}

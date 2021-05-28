@@ -17,14 +17,13 @@ type TaskItemPropsType = {
     addNewTask: (task: string, level: number, idTask: number | null) => void
     createSubtasksMode: boolean
     changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
-    changeTaskOrder: (id: number, order: number, level: number) => void
     dragStartHandler: (e: React.DragEvent<HTMLDivElement>) => void
     dragEndHandler: (e: React.DragEvent<HTMLDivElement>) => void
     dragOverHandler: (e: React.DragEvent<HTMLDivElement>) => void
     dropHandler: (e: React.DragEvent<HTMLDivElement>) => void
 }
 
-const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, setShowSubtasks, showSubtasks, subtasksGenerate, isCompleted, deleteTask, changeCompletedStatus, addNewTask, createSubtasksMode, changeCreateSubtasksMode, changeTaskOrder, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
+const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, setShowSubtasks, showSubtasks, subtasksGenerate, isCompleted, deleteTask, changeCompletedStatus, addNewTask, createSubtasksMode, changeCreateSubtasksMode, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
 
     const addSubtaskFromLevel0 = (task: string) => {
         addNewTask(task, 0, id)

@@ -17,12 +17,17 @@ type MapStatePropsType = {
     projects: Array<ProjectType>
 }
 
+type ErrorsType = {
+    name?: string,
+    title?: string
+}
+
 const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType & RouteComponentProps> = ({ addNewProj, projects, history }) => {
     return (
         <Formik
             initialValues={{ name: '', title: '', desc: '' }}
             validate={values => {
-                const errors: any = {};
+                const errors: ErrorsType = {};
                 if (!values.name) {
                     errors.name = '* Это поле не может быть пустым';
                 }

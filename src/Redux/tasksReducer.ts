@@ -16,13 +16,26 @@ export type TaskType = {
     text: string
     order: number
     completed: boolean
-    subtasksId: any
+    subtasksId: Array<number>
+}
+
+export type SubtaskType = {
+    id: number
+    text: string
+    completed: boolean
+    subsubtasksId: Array<number>
+}
+
+export type SubsubtaskType = {
+    id: number
+    text: string
+    completed: boolean
 }
 
 const initialValue = {
     tasks: [] as Array<TaskType>,
-    subtasks: [] as Array<any>,
-    subsubtasks: []  as Array<any>,
+    subtasks: [] as Array<SubtaskType>,
+    subsubtasks: []  as Array<SubsubtaskType>,
 }
 
 export const tasksActions = {
@@ -30,7 +43,7 @@ export const tasksActions = {
     changeCompletedStatus: (id: number, level: number) => ({ type: CHANGE_COMPLETED_STATUS, id, level }),
     setCompletedStatus: (id: number, status: boolean, level: number) => ({ type: SET_COMPLETED_STATUS, id, status, level }),
     addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => ({ type: ADD_NEW_TASK, task, level, idTask, projectId }),
-    changeTaskOrder: (id: number, order: number, level: number) => ({ type: CHANGE_TASK_ORDER, id, order, level}),
+    changeTaskOrder: (id: number, order: number) => ({ type: CHANGE_TASK_ORDER, id, order }),
     setTasksFromLS: ( tasks: Array<any>, level: number ) => ({ type: SET_TASKS_FROM_LS, tasks, level })
 }
 
@@ -177,41 +190,14 @@ const tasksReducer = (state = initialValue, action: any): InitialValueType =>{
             }
         }
         case CHANGE_TASK_ORDER: {
-            switch(action.level){
-                case 0: {
-                    return {
-                        ...state,
-                        tasks: state.tasks.map(task => {
-                            if(task.id === action.id){
-                                task.order = action.order
-                            }
-                            return task
-                        })
+            return {
+                ...state,
+                tasks: state.tasks.map(task => {
+                    if(task.id === action.id){
+                        task.order = action.order
                     }
-                }
-                case 1: {
-                    return {
-                        ...state,
-                        subtasks: state.subtasks.map(subtask => {
-                            if(subtask.id === action.id){
-                                subtask.order = action.order
-                            }
-                            return subtask
-                        })
-                    }
-                }
-                case 2: {
-                    return {
-                        ...state,
-                        subsubtasks: state.subsubtasks.map(subsubtask => {
-                            if(subsubtask.id === action.id){
-                                subsubtask.order = action.order
-                            }
-                            return subsubtask
-                        })
-                    }
-                }
-                default: return state
+                    return task
+                })
             }
         }
         case SET_TASKS_FROM_LS: {

@@ -6,11 +6,11 @@ import App from './App'
 import LocalStorage, { projectsLS, subsubtasksLS, subtasksLS, tasksLS } from './LocalStorage/LocalStorage'
 import { projectsActions, ProjectType } from './Redux/projectsReducer'
 import store, { AppStateType } from './Redux/reduxStore'
-import { tasksActions } from './Redux/tasksReducer'
+import { tasksActions, TaskType } from './Redux/tasksReducer'
 
 type MapStatePropsType = {
     projects: Array<ProjectType>
-    tasks: Array<any>
+    tasks: Array<TaskType>
     subtasks: Array<any>
     subsubtasks: Array<any>
   }
