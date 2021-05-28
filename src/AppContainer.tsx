@@ -6,26 +6,26 @@ import App from './App'
 import LocalStorage, { projectsLS, subsubtasksLS, subtasksLS, tasksLS } from './LocalStorage/LocalStorage'
 import { projectsActions, ProjectType } from './Redux/projectsReducer'
 import store, { AppStateType } from './Redux/reduxStore'
-import { tasksActions, TaskType } from './Redux/tasksReducer'
+import { SubsubtaskType, SubtaskType, tasksActions, TaskType } from './Redux/tasksReducer'
 
 type MapStatePropsType = {
     projects: Array<ProjectType>
     tasks: Array<TaskType>
-    subtasks: Array<any>
-    subsubtasks: Array<any>
+    subtasks: Array<SubtaskType>
+    subsubtasks: Array<SubsubtaskType>
   }
   
   type MapDispatchPropsType = {
     setProjectsFromLS: (projects: Array<ProjectType>) => void
-    setTasksFromLS: (tasks: Array<any>, level: number) => void
+    setTasksFromLS: (tasks: Array<TaskType>, level: number) => void
   }
 
 const AppContainer: FC<MapStatePropsType & MapDispatchPropsType & RouteComponentProps> = ({ location, projects, setProjectsFromLS, tasks, subtasks, subsubtasks, setTasksFromLS }) => {
 
-    let links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: any) => '/' + project.link)
+    let links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: ProjectType) => '/' + project.link)
 
     useEffect(() => {
-      links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: any) => '/' + project.link)
+      links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: ProjectType) => '/' + project.link)
     }, [location.pathname])
   
     useEffect(() => {

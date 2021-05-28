@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 import s from './allProjFilter.module.css'
 
 type AllProjFilterPropsType = {
@@ -8,7 +8,7 @@ type AllProjFilterPropsType = {
 
 const AllProjFilter: FC<AllProjFilterPropsType> = ({ filterOption, changeFilterOption }) => {
 
-    const onChange = (e: any) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         changeFilterOption(e.target.value)
     }
 

@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { AppStateType } from "../../../../Redux/reduxStore"
-import { tasksActions } from "../../../../Redux/tasksReducer"
+import { SubtaskType, tasksActions, TaskType } from "../../../../Redux/tasksReducer"
 import TaskItem from "./TaskItem"
 import TaskSubitemContainer from "./TaskSubitem/TaskSubitemContainer"
 
@@ -15,11 +15,10 @@ type TaskItemContainerPropsType = {
     setDragStartOrder: Dispatch<SetStateAction<number>>
     dragStartId: number
     setDragStartId: Dispatch<SetStateAction<number>>
-    sortTasks: (a: any, b: any) => number
 }
 
 type MapStatePropsType = {
-    subtasks: any
+    subtasks: Array<SubtaskType>
 }
 
 type MapDispatchPropsType = {
@@ -31,7 +30,7 @@ type MapDispatchPropsType = {
 }
 
 
-const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId, sortTasks}) => {
+const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId}) => {
 
     const [showSubtasks, setShowSubtasks] = useState(false)
 
@@ -48,13 +47,11 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
         : []
 
     const subtasksGenerate = subtasksFind
-        .sort(sortTasks)
         .map(subtask => {
         if(subtask && subtask.subsubtasksId){
             return <TaskSubitemContainer 
                 key={subtask.id} 
                 id={subtask.id} 
-                order={subtask.order} 
                 text={subtask.text} 
                 completed={subtask.completed}
                 subsubtasksId={subtask.subsubtasksId} 

@@ -1,9 +1,10 @@
 import { FC } from "react"
+import { ProjectType } from "../../../Redux/projectsReducer"
 import AllProjItem from "./AllProjItem/AllProjItem"
 import s from './allProjTable.module.css'
 
 type AllProjTablePropsType = {
-    targetProjects: Array<any>
+    targetProjects: Array<ProjectType>
     deleteProject: (id: number) => void
 }
 

@@ -6,7 +6,7 @@ import getSubTasksFromTasks from '../../../../../heplers/getSubTasksFromTasks'
 import last10Items from '../../../../../heplers/last10Items'
 import { ProjectType } from '../../../../../Redux/projectsReducer'
 import { AppStateType } from '../../../../../Redux/reduxStore'
-import { TaskType } from '../../../../../Redux/tasksReducer'
+import { SubsubtaskType, SubtaskType, TaskType } from '../../../../../Redux/tasksReducer'
 import s from './projectList.module.css'
 
 type ProjectListPropsType = {
@@ -16,8 +16,8 @@ type ProjectListPropsType = {
 type MapStatePropsType = {
     projects: Array<ProjectType>
     tasks: Array<TaskType>
-    subtasks: Array<any>
-    subsubtasks: Array<any>
+    subtasks: Array<SubtaskType>
+    subsubtasks: Array<SubsubtaskType>
 }
 
 const ProjectList: FC<ProjectListPropsType & MapStatePropsType> = ({ allMode, projects, tasks, subtasks, subsubtasks }) => {

@@ -9,6 +9,10 @@ type AddNewTaskFormPropType = {
     setShowSubtasks?: Dispatch<SetStateAction<boolean>>
 }
 
+type ErrorsType = {
+    task?: string
+}
+
 const AddNewTaskForm: FC<AddNewTaskFormPropType> = ({ addSubtask, changeCreateSubtasksMode, setShowSubtasks }) => {
 
     useEffect(() => {
@@ -23,7 +27,7 @@ const AddNewTaskForm: FC<AddNewTaskFormPropType> = ({ addSubtask, changeCreateSu
         <Formik
             initialValues={{ task: '' }}
             validate={values => {
-                const errors: any = {};
+                const errors: ErrorsType = {};
                 if (!values.task) {
                     errors.task = '* Это поле не может быть пустым';
                 }

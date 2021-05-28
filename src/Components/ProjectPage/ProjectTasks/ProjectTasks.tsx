@@ -16,7 +16,7 @@ type MapStatePropsType = {
 
 const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId, tasks }) => {
 
-    const findedTasks = tasks.filter(task => task.forProject === projectId)
+    const findedTasks = tasks.filter((task: TaskType) => task.forProject === projectId)
 
     const [dragStartOrder, setDragStartOrder] = useState(0)
     const [dragStartId, setDragStartId] = useState(0)
@@ -25,7 +25,7 @@ const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId
         return <p className={s.noTasks}>Задач на проект пока нет!</p>
     }
 
-    const sortTasks = (a: any, b: any) => a.order > b.order ? 1 : -1
+    const sortTasks = (a: TaskType, b: TaskType) => a.order > b.order ? 1 : -1
 
     const taskElem = findedTasks
         .sort(sortTasks)
@@ -40,7 +40,6 @@ const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId
             setDragStartOrder={setDragStartOrder}
             dragStartId={dragStartId}
             setDragStartId={setDragStartId}
-            sortTasks={sortTasks}
         />)
 
     return (

@@ -15,6 +15,10 @@ type AddTaskFormPropsType = {
     projectId: number
 }
 
+type ErrorsType = {
+    newTask?: string
+}
+
 const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTask, projectId }) => {
 
     const [openForm, setOpenForm] = useState(false)
@@ -34,7 +38,7 @@ const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTa
                 <Formik
                     initialValues={{ newTask: '' }}
                     validate={values => {
-                        const errors: any = {};
+                        const errors: ErrorsType = {};
                         if (!values.newTask) {
                             errors.newTask = '* Это поле не может быть пустым';
                         }

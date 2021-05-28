@@ -6,7 +6,7 @@ type TaskSubitemPropsType = {
     text: string
     showTask: boolean
     isCompleted: boolean
-    subtasksGenerate: any
+    subtasksGenerate: Array<JSX.Element> | any
     completed: boolean
     addSubtaskHandler: () => void
     removeSubitem: () => void

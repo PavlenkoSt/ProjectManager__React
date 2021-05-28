@@ -10,7 +10,7 @@ import ProjectPageContainer from './Components/ProjectPage/ProjectPageContainer'
 import 'react-toastify/dist/ReactToastify.css';
 
 type AppPropsType = {
-  links: Array<any>
+  links: Array<string>
 }
 
 const App: FC<AppPropsType> = ({ links }) => {

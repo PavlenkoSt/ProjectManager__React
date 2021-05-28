@@ -1,7 +1,10 @@
+import { SubsubtaskType } from './../Redux/tasksReducer';
+import { SubtaskType, TaskType } from "../Redux/tasksReducer"
+
 type allTaskObjType = {
-    tasks: Array<any>
-    subtasks: Array<any>
-    subsubtasks: Array<any>
+    tasks: Array<TaskType>
+    subtasks: Array<SubtaskType>
+    subsubtasks: Array<SubsubtaskType>
 }
 
 const taskLevel = (allTaskObj: allTaskObjType, projectId: number ) => {

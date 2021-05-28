@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 import getProcentCompletedProj from "../../../../heplers/getProcentCompletedProj"
 import getSubTasksFromTasks from "../../../../heplers/getSubTasksFromTasks"
 import { AppStateType } from "../../../../Redux/reduxStore"
-import { tasksActions } from '../../../../Redux/tasksReducer'
+import { SubsubtaskType, SubtaskType, tasksActions, TaskType } from '../../../../Redux/tasksReducer'
 import s from '../allProjTable.module.css'
 
 
@@ -21,9 +21,9 @@ type AllProjItemPropsType = {
 }
 
 type MapStatePropsType = {
-    tasks: Array<any>
-    subtasks: Array<any>
-    subsubtasks: Array<any>
+    tasks: Array<TaskType>
+    subtasks: Array<SubtaskType>
+    subsubtasks: Array<SubsubtaskType>
 }
 
 type MapDispatchPropsType = {

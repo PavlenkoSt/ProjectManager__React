@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import { connect } from "react-redux"
 import { toast } from "react-toastify"
 import { AppStateType } from "../../../../../Redux/reduxStore"
-import { tasksActions } from "../../../../../Redux/tasksReducer"
+import { SubsubtaskType, tasksActions } from "../../../../../Redux/tasksReducer"
 import SubTaskItem from "./SubTaskItem/SubTaskItem"
 import TaskSubitem from "./TaskSubitem"
 
@@ -10,14 +10,13 @@ type TaskSubitemContainerPropsType = {
     id: number
     text: string
     subsubtasksId: Array<number>
-    order: number
     completed: boolean
     deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
     changeCompletedStatus: (id: number, level: number) => void
 }
 
 type MapStatePropsType = {
-    subsubtasks: any
+    subsubtasks: Array<SubsubtaskType>
 }
 
 type MapDispatchPropsType = {
@@ -61,7 +60,7 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         })
     }
 
-    const subtasksElems = subsubtasksId.map((subtaskId: any) => {
+    const subtasksElems = subsubtasksId.map((subtaskId: number) => {
         for(let i = 0; i <= subsubtasks.length; i++){
             if(subsubtasks[i] && subsubtasks[i].id === subtaskId){
                 return subsubtasks[i]
@@ -69,7 +68,7 @@ const TaskSubitemContainer: FC<TaskSubitemContainerPropsType & MapStatePropsType
         }
     })
 
-    const subtasksGenerate = subtasksElems.map((subsubtask: any) => subsubtask && <SubTaskItem key={subsubtask.id} id={subsubtask.id} completed={subsubtask.completed} text={subsubtask.text} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} /> )
+    const subtasksGenerate = subtasksElems.map((subsubtask?: SubsubtaskType) => subsubtask && <SubTaskItem key={subsubtask.id} id={subsubtask.id} completed={subsubtask.completed} text={subsubtask.text} deleteTask={deleteTask} changeCompletedStatus={changeCompletedStatus} /> )
 
     const isCompleted = subtasksElems.every(subsubtasksId => subsubtasksId && subsubtasksId.completed)
 
