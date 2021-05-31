@@ -1,7 +1,7 @@
 const CACHE_NAME = 'check-list';
 const urlsToCache = ['index.html'];
 
-self.addEventListener('install', e => {
+self.addEventListener('install', (e: any) => {
   e.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -11,7 +11,7 @@ self.addEventListener('install', e => {
   )
 });
 
-self.addEventListener('fetch', e => {
+self.addEventListener('fetch', (e: any) => {
     e.respondWith(
       caches.match(e.request)
         .then(() => {
@@ -21,7 +21,7 @@ self.addEventListener('fetch', e => {
     )
 });
 
-self.addEventListener('activate', e => {
+self.addEventListener('activate', (e: any) => {
   const cachesWhitelist = [];
   cachesWhitelist.push(CACHE_NAME);
 
