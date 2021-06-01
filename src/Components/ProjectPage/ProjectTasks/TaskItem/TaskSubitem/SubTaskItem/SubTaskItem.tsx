@@ -41,7 +41,6 @@ const SubTaskItem: FC<SubTaskItemPropsType> = ({id,  text, completed }) => {
 
     return (
         <div 
-            draggable='true' 
             className={s.subInnerTrigger}
         >
             <div className={s.subtaskItem} style={completed ? {textDecoration: 'line-through'} : {}}>- {text}</div>
