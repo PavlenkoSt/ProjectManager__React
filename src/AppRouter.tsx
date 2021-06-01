@@ -8,7 +8,6 @@ const AppRouter = () => {
     return (
         <HashRouter>
             <Provider store={store}>
-                {/* @ts-ignore */}
                 <AppContainer/>
             </Provider>
         </HashRouter>

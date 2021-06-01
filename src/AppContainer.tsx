@@ -1,52 +1,50 @@
-import React, { FC, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { RouteComponentProps, withRouter } from 'react-router'
-import { compose } from 'redux'
+import React, { useEffect } from 'react'
+import {  useDispatch, useSelector } from 'react-redux'
+import { useHistory} from 'react-router'
 import App from './App'
 import LocalStorage, { projectsLS, subsubtasksLS, subtasksLS, tasksLS } from './LocalStorage/LocalStorage'
 import { projectsActions, ProjectType } from './Redux/projectsReducer'
-import store, { AppStateType } from './Redux/reduxStore'
-import { SubsubtaskType, SubtaskType, tasksActions, TaskType } from './Redux/tasksReducer'
+import store from './Redux/reduxStore'
+import { projectsSelector } from './Redux/selectors/projectsSelectors'
+import { subsubtasksSelector, subtasksSelector, tasksSelector } from './Redux/selectors/tasksSelector'
+import { tasksActions } from './Redux/tasksReducer'
 
-type MapStatePropsType = {
-    projects: Array<ProjectType>
-    tasks: Array<TaskType>
-    subtasks: Array<SubtaskType>
-    subsubtasks: Array<SubsubtaskType>
-  }
-  
-  type MapDispatchPropsType = {
-    setProjectsFromLS: (projects: Array<ProjectType>) => void
-    setTasksFromLS: (tasks: Array<TaskType>, level: number) => void
-  }
+const AppContainer = () => {
+    const history = useHistory()
+    const dispatch = useDispatch()
 
-const AppContainer: FC<MapStatePropsType & MapDispatchPropsType & RouteComponentProps> = ({ location, projects, setProjectsFromLS, tasks, subtasks, subsubtasks, setTasksFromLS }) => {
-
-    let links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: ProjectType) => '/' + project.link)
+    const projects = useSelector(projectsSelector)
+    const tasks = useSelector(tasksSelector)
+    const subtasks = useSelector(subtasksSelector)
+    const subsubtasks = useSelector(subsubtasksSelector)
+   
+    let links = store.getState().projectsReducer.projects &&
+      store.getState().projectsReducer.projects.map((project: ProjectType) => '/' + project.link)
 
     useEffect(() => {
-      links = store.getState().projectsReducer.projects && store.getState().projectsReducer.projects.map((project: ProjectType) => '/' + project.link)
-    }, [location.pathname])
+      links = store.getState().projectsReducer.projects && 
+        store.getState().projectsReducer.projects.map((project: ProjectType) => '/' + project.link)
+    }, [history.location.pathname])
   
     useEffect(() => {
       const projects = LocalStorage.get(projectsLS)
       if(projects && projects.length){
-        setProjectsFromLS(projects)
+        dispatch(projectsActions.setProjectsFromLS(projects))
       }
   
       const tasks = LocalStorage.get(tasksLS)
       if(tasks && tasks.length){
-        setTasksFromLS(tasks, 0)
+        dispatch(tasksActions.setTasksFromLS(tasks, 0))
       }
   
       const subtasks = LocalStorage.get(subtasksLS)
       if(subtasks && subtasks.length){
-        setTasksFromLS(subtasks, 1)
+        dispatch(tasksActions.setTasksFromLS(subtasks, 1))
       }
   
       const subsubtasks = LocalStorage.get(subsubtasksLS)
       if(subsubtasks && subsubtasks.length){
-        setTasksFromLS(subsubtasks, 2)
+        dispatch(tasksActions.setTasksFromLS(subsubtasks, 2))
       }
     }, [])
   
@@ -66,23 +64,7 @@ const AppContainer: FC<MapStatePropsType & MapDispatchPropsType & RouteComponent
       LocalStorage.set(subsubtasksLS, subsubtasks)
     }, [subsubtasks])
 
-    {/* @ts-ignore */}
     return <App links={links} />
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    projects: state.projectsReducer.projects,
-    tasks: state.tasksReducer.tasks,
-    subtasks: state.tasksReducer.subtasks,
-    subsubtasks: state.tasksReducer.subsubtasks,
-})
-  
-const mapDispatchToProps = {
-    setProjectsFromLS: projectsActions.setProjectsFromLS,
-    setTasksFromLS: tasksActions.setTasksFromLS
-}
-  
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withRouter
-)(AppContainer)
+export default AppContainer

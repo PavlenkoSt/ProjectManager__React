@@ -7,7 +7,7 @@ import AllProjPageContainer from './Components/AllProjPage/AllProjPageContainer'
 import HeaderContainer from './Components/Header/HeaderContainer'
 import MainPage from './Components/MainPage/MainPage'
 import ProjectPageContainer from './Components/ProjectPage/ProjectPageContainer'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 type AppPropsType = {
   links: Array<string>
