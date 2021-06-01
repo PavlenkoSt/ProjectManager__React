@@ -1,28 +1,24 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
-import { FC, useEffect } from "react"
-import { connect } from "react-redux"
-import { RouteComponentProps, withRouter } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router"
 import { toast } from "react-toastify"
 import constructLinkFromProjectName from "../../../heplers/constructLinkFromProjectName"
 import isUniqueProjectName from "../../../heplers/isUniqueProjectName"
-import { projectsActions, ProjectType } from "../../../Redux/projectsReducer"
-import { AppStateType } from "../../../Redux/reduxStore"
+import { projectsActions } from "../../../Redux/projectsReducer"
+import { projectsSelector } from "../../../Redux/selectors/projectsSelectors"
 import s from './addNewProjForm.module.css'
 
-type MapDispatchPropsType = {
-    addNewProj: (name: string, core: string, desc: string) => void
-}
-
-type MapStatePropsType = {
-    projects: Array<ProjectType>
-}
-
 type ErrorsType = {
-    name?: string,
+    name?: string
     title?: string
 }
 
-const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType & RouteComponentProps> = ({ addNewProj, projects, history }) => {
+const AddNewProjForm = () => {
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const projects = useSelector(projectsSelector)
+
     return (
         <Formik
             initialValues={{ name: '', title: '', desc: '' }}
@@ -40,7 +36,7 @@ const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType & RouteCompone
                 return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-                addNewProj(values.name, values.title, values.desc)
+                dispatch(projectsActions.addNewProject(values.name, values.title, values.desc))
                 setSubmitting(false)
                 toast.dark("Проект успешно добавлен!", {
                     position: "top-right",
@@ -78,11 +74,4 @@ const AddNewProjForm: FC<MapDispatchPropsType & MapStatePropsType & RouteCompone
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    projects: state.projectsReducer.projects
-})
-const mapDispatchToProps = {
-    addNewProj: projectsActions.addNewProject
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AddNewProjForm))
+export default AddNewProjForm
