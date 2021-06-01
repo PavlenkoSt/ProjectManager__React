@@ -1,15 +1,18 @@
-import { Dispatch, FC, SetStateAction } from 'react'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router'
 import Burger from './Burger/Burger'
 import s from './header.module.css'
 import Home from './Home/Home'
 import Menu from './Menu/Menu'
 
-type HeaderPropsType = {
-    openMenu: boolean
-    setOpenMenu: Dispatch<SetStateAction<boolean>>
-}
+const Header = () => {
+    const history = useHistory()
+    const [ openMenu, setOpenMenu ] = useState(false)
 
-const Header: FC<HeaderPropsType> = ({ openMenu, setOpenMenu }) => {
+    useEffect(() => {
+        setOpenMenu(false)
+    }, [history.location.pathname])
+
     return (
         <header className={`${s.header} ${openMenu ? s.wide : ''}`}>    
             <Burger openMenu={openMenu} setOpenMenu={setOpenMenu}/>

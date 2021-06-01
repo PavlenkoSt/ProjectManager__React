@@ -14,7 +14,6 @@ type ErrorsType = {
 }
 
 const AddNewTaskForm: FC<AddNewTaskFormPropType> = ({ addSubtask, changeCreateSubtasksMode, setShowSubtasks }) => {
-
     useEffect(() => {
         const input = document.querySelector('.addNewTaskForm_input__3EOqx')
         if(input){

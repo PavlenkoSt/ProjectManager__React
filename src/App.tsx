@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import './App.css'
 import AddNewProjectPage from './Components/AddNewProjectPage/AddNewProjectPage'
-import HeaderContainer from './Components/Header/HeaderContainer'
+import Header from './Components/Header/Header'
 import MainPage from './Components/MainPage/MainPage'
 import ProjectPageContainer from './Components/ProjectPage/ProjectPageContainer'
 import 'react-toastify/dist/ReactToastify.css'
@@ -16,7 +16,7 @@ type AppPropsType = {
 const App: FC<AppPropsType> = ({ links }) => {
   return (
     <div>
-      <HeaderContainer/>
+      <Header/>
       <Switch>
         {/* @ts-ignore */}
         <Route path={links} component={ProjectPageContainer} />
