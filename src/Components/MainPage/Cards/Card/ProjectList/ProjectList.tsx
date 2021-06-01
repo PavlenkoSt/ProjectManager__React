@@ -1,26 +1,23 @@
 import { FC } from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import getProcentCompletedProj from '../../../../../heplers/getProcentCompletedProj'
 import getSubTasksFromTasks from '../../../../../heplers/getSubTasksFromTasks'
 import last10Items from '../../../../../heplers/last10Items'
-import { ProjectType } from '../../../../../Redux/projectsReducer'
-import { AppStateType } from '../../../../../Redux/reduxStore'
-import { SubsubtaskType, SubtaskType, TaskType } from '../../../../../Redux/tasksReducer'
+import { projectsSelector } from '../../../../../Redux/selectors/projectsSelectors'
+import { subsubtasksSelector, subtasksSelector, tasksSelector } from '../../../../../Redux/selectors/tasksSelector'
 import s from './projectList.module.css'
 
 type ProjectListPropsType = {
     allMode: boolean
 }
 
-type MapStatePropsType = {
-    projects: Array<ProjectType>
-    tasks: Array<TaskType>
-    subtasks: Array<SubtaskType>
-    subsubtasks: Array<SubsubtaskType>
-}
+const ProjectList: FC<ProjectListPropsType> = ({ allMode }) => {
 
-const ProjectList: FC<ProjectListPropsType & MapStatePropsType> = ({ allMode, projects, tasks, subtasks, subsubtasks }) => {
+    const projects = useSelector(projectsSelector)
+    const tasks = useSelector(tasksSelector)
+    const subtasks = useSelector(subtasksSelector)
+    const subsubtasks = useSelector(subsubtasksSelector)
 
     const projectList = allMode ? projects : projects.filter(project => project.completed === false)
     const last10 = last10Items(projectList)
@@ -58,11 +55,4 @@ const ProjectList: FC<ProjectListPropsType & MapStatePropsType> = ({ allMode, pr
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    projects: state.projectsReducer.projects,
-    tasks: state.tasksReducer.tasks,
-    subtasks: state.tasksReducer.subtasks,
-    subsubtasks: state.tasksReducer.subsubtasks
-})
-
-export default connect(mapStateToProps)(ProjectList)
+export default ProjectList
