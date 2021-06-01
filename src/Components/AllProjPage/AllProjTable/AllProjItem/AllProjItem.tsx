@@ -1,14 +1,13 @@
 import { FC } from "react"
-import { connect } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 import { toast } from "react-toastify"
 import getProcentCompletedProj from "../../../../heplers/getProcentCompletedProj"
 import getSubTasksFromTasks from "../../../../heplers/getSubTasksFromTasks"
-import { AppStateType } from "../../../../Redux/reduxStore"
-import { SubsubtaskType, SubtaskType, tasksActions, TaskType } from '../../../../Redux/tasksReducer'
+import { projectsActions } from "../../../../Redux/projectsReducer"
+import { subsubtasksSelector, subtasksSelector, tasksSelector } from "../../../../Redux/selectors/tasksSelector"
+import { tasksActions } from '../../../../Redux/tasksReducer'
 import s from '../allProjTable.module.css'
-
-
 
 type AllProjItemPropsType = {
     core: string
@@ -17,20 +16,14 @@ type AllProjItemPropsType = {
     id: number
     completed: boolean
     link: string
-    deleteProject: (id: number) => void
 }
 
-type MapStatePropsType = {
-    tasks: Array<TaskType>
-    subtasks: Array<SubtaskType>
-    subsubtasks: Array<SubsubtaskType>
-}
+const AllProjItem: FC<AllProjItemPropsType> = ({ core, name, desc, completed, link, id }) => {
+    const dispatch = useDispatch()
 
-type MapDispatchPropsType = {
-    deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
-}
-
-const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType & MapDispatchPropsType> = ({ core, name, desc, completed, link, id, tasks, subtasks, subsubtasks, deleteProject, deleteTask }) => {
+    const tasks = useSelector(tasksSelector)
+    const subtasks = useSelector(subtasksSelector)
+    const subsubtasks = useSelector(subsubtasksSelector)
 
     const targetTasks = tasks.filter(task => task.forProject === id)
     const targetSubtasks = getSubTasksFromTasks(targetTasks, subtasks)
@@ -43,9 +36,9 @@ const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType & MapDispatchProp
     }, id)
 
     const deleteItem = () => {
-        deleteProject(id)
+        dispatch(projectsActions.deleteProject(id))
         targetTasks.forEach(task => {
-            deleteTask(task.id, 0, task.subtasksId)
+            dispatch(tasksActions.deleteTask(task.id, 0, task.subtasksId))
         })
         toast.dark("Проект успешно удален!", {
             position: "top-right",
@@ -72,14 +65,4 @@ const AllProjItem: FC<AllProjItemPropsType & MapStatePropsType & MapDispatchProp
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    tasks: state.tasksReducer.tasks,
-    subtasks: state.tasksReducer.subtasks,
-    subsubtasks: state.tasksReducer.subsubtasks
-})
-
-const mapDispatchToProps = {
-    deleteTask: tasksActions.deleteTask
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AllProjItem)
+export default AllProjItem

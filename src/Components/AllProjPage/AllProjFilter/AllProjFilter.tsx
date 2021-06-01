@@ -1,15 +1,17 @@
 import { ChangeEvent, FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { projectsActions } from '../../../Redux/projectsReducer';
+import { filterOptionSelector } from '../../../Redux/selectors/projectsSelectors';
 import s from './allProjFilter.module.css'
 
-type AllProjFilterPropsType = {
-    filterOption: string
-    changeFilterOption: (filterOption: string) => void
-}
 
-const AllProjFilter: FC<AllProjFilterPropsType> = ({ filterOption, changeFilterOption }) => {
+const AllProjFilter = () => {
+    const dispatch = useDispatch()
+
+    const filterOption = useSelector(filterOptionSelector)
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        changeFilterOption(e.target.value)
+        dispatch(projectsActions.changeFilterOption(e.target.value))
     }
 
     return (

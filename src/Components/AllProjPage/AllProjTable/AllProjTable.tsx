@@ -5,10 +5,9 @@ import s from './allProjTable.module.css'
 
 type AllProjTablePropsType = {
     targetProjects: Array<ProjectType>
-    deleteProject: (id: number) => void
 }
 
-const AllProjTable: FC<AllProjTablePropsType> = ({ targetProjects, deleteProject }) => {
+const AllProjTable: FC<AllProjTablePropsType> = ({ targetProjects }) => {
 
     const projectToTable = targetProjects
         .map(project => <AllProjItem 
@@ -19,7 +18,6 @@ const AllProjTable: FC<AllProjTablePropsType> = ({ targetProjects, deleteProject
             completed={project.completed}
             id={project.id}
             link={project.link}
-            deleteProject={deleteProject}
         />)
 
     return (
