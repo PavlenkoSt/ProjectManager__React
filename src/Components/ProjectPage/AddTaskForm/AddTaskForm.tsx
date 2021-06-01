@@ -3,13 +3,9 @@ import { FC, useEffect, useState } from "react"
 import s from './addTaskForm.module.css'
 import s2 from '../../common/AddNewTaskForm/addNewTaskForm.module.css'
 import { tasksActions } from "../../../Redux/tasksReducer"
-import { connect } from "react-redux"
+import { connect, useDispatch } from "react-redux"
 import { AppStateType } from "../../../Redux/reduxStore"
 import { toast } from "react-toastify"
-
-type MapDispatchPropsType = {   
-    addNewTask: (task: string, level: number, idTask: number | null, projectId?: number) => void
-}
 
 type AddTaskFormPropsType = {
     projectId: number
@@ -19,8 +15,8 @@ type ErrorsType = {
     newTask?: string
 }
 
-const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTask, projectId }) => {
-
+const AddTaskForm: FC<AddTaskFormPropsType> = ({ projectId }) => {
+    const dispatch = useDispatch()
     const [openForm, setOpenForm] = useState(false)
 
     useEffect(() => {
@@ -45,7 +41,7 @@ const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTa
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
-                        addNewTask(values.newTask, -1, null, projectId)
+                        dispatch(tasksActions.addNewTask(values.newTask, -1, null, projectId))
                         toast.dark("Задача успешно добавлена!", {
                             position: "top-right",
                             autoClose: 1500,
@@ -77,10 +73,4 @@ const AddTaskForm: FC<AddTaskFormPropsType & MapDispatchPropsType> = ({ addNewTa
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({})
-
-const mapDispatchToProps = {
-    addNewTask: tasksActions.addNewTask
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddTaskForm)
+export default AddTaskForm

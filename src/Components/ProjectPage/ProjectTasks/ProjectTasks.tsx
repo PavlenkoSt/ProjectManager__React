@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
-import { connect } from "react-redux"
-import { AppStateType } from "../../../Redux/reduxStore"
+import { useSelector } from "react-redux"
+import { tasksSelector } from "../../../Redux/selectors/tasksSelector"
 import { TaskType } from "../../../Redux/tasksReducer"
 import s from './projectTasks.module.css'
 import TaskItemContainer from "./TaskItem/TaskItemContainer"
@@ -10,11 +10,8 @@ type ProjectTasksPropsType = {
     projectId: number
 }
 
-type MapStatePropsType = {
-    tasks: Array<TaskType>
-}
-
-const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId, tasks }) => {
+const ProjectTasks: FC<ProjectTasksPropsType> = ({ projectId }) => {
+    const tasks = useSelector(tasksSelector)
 
     const findedTasks = tasks.filter((task: TaskType) => task.forProject === projectId)
 
@@ -49,8 +46,4 @@ const ProjectTasks: FC<ProjectTasksPropsType & MapStatePropsType> = ({ projectId
     )
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    tasks: state.tasksReducer.tasks
-})
-
-export default connect(mapStateToProps)(ProjectTasks)
+export default ProjectTasks
