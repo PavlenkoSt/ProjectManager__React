@@ -1,5 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { tasksActions } from '../../../../Redux/tasksReducer'
 import AddNewTaskForm from '../../../common/AddNewTaskForm/AddNewTaskForm'
 import s from './taskItem.module.css'
 
@@ -9,13 +11,10 @@ type TaskItemPropsType = {
     completed: boolean
     subsubtasksId?: Array<number> 
     showSubtasks: boolean
-    setShowSubtasks: Dispatch<SetStateAction<boolean>>
     subtasksGenerate: Array<JSX.Element> | any
     isCompleted: boolean
-    deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
-    changeCompletedStatus: (id: number, level: number) => void
-    addNewTask: (task: string, level: number, idTask: number | null) => void
-    createSubtasksMode: boolean
+    createSubtasksMode: boolean    
+    setShowSubtasks: Dispatch<SetStateAction<boolean>>
     changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
     dragStartHandler: (e: React.DragEvent<HTMLDivElement>) => void
     dragEndHandler: (e: React.DragEvent<HTMLDivElement>) => void
@@ -23,10 +22,11 @@ type TaskItemPropsType = {
     dropHandler: (e: React.DragEvent<HTMLDivElement>) => void
 }
 
-const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, setShowSubtasks, showSubtasks, subtasksGenerate, isCompleted, deleteTask, changeCompletedStatus, addNewTask, createSubtasksMode, changeCreateSubtasksMode, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
+const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, setShowSubtasks, showSubtasks, subtasksGenerate, isCompleted, createSubtasksMode, changeCreateSubtasksMode, dragStartHandler, dragEndHandler, dragOverHandler, dropHandler }) => {
+    const dispatch = useDispatch()
 
     const addSubtaskFromLevel0 = (task: string) => {
-        addNewTask(task, 0, id)
+        dispatch(tasksActions.addNewTask(task, 0, id))
         toast.dark("Подзадача успешно добавлена!", {
             position: "top-right",
             autoClose: 1500,
@@ -44,7 +44,7 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
     }
 
     const removeTask = () => {
-        deleteTask(id, 0, subsubtasksId as null | Array<number>);
+        dispatch(tasksActions.deleteTask(id, 0, subsubtasksId as null | Array<number>))
         toast.dark("Задача успешно удалена!", {
             position: "top-right",
             autoClose: 1500,
@@ -57,7 +57,7 @@ const TaskItem: FC<TaskItemPropsType> = ({ id, text, completed, subsubtasksId, s
     }
 
     const toggleCompletedStatus = () => {
-        changeCompletedStatus(id, 0)
+        dispatch(tasksActions.changeCompletedStatus(id, 0))
         toast.dark(completed ? 'Невыполнено!' : 'Выполнено!', {
             position: "top-right",
             autoClose: 1500,

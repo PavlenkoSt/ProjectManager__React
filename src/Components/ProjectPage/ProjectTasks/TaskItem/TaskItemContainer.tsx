@@ -1,9 +1,9 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
-import { connect } from "react-redux"
-import { AppStateType } from "../../../../Redux/reduxStore"
-import { SubtaskType, tasksActions, TaskType } from "../../../../Redux/tasksReducer"
+import { useDispatch, useSelector } from "react-redux"
+import { subtasksSelector } from "../../../../Redux/selectors/tasksSelector"
+import { tasksActions } from "../../../../Redux/tasksReducer"
 import TaskItem from "./TaskItem"
-import TaskSubitemContainer from "./TaskSubitem/TaskSubitemContainer"
+import TaskSubitem from "./TaskSubitem/TaskSubitem"
 
 type TaskItemContainerPropsType = {
     text: string
@@ -17,20 +17,9 @@ type TaskItemContainerPropsType = {
     setDragStartId: Dispatch<SetStateAction<number>>
 }
 
-type MapStatePropsType = {
-    subtasks: Array<SubtaskType>
-}
-
-type MapDispatchPropsType = {
-    deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
-    changeCompletedStatus: (id: number, level: number) => void
-    setCompletedStatus: (id: number, status: boolean, level: number) => void
-    addNewTask: (task: string, level: number, idTask: number | null) => void
-    changeTaskOrder: (id: number, order: number) => void
-}
-
-
-const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & MapDispatchPropsType> = ({id, text, order, subtasksId, completed, subtasks, deleteTask, changeCompletedStatus, setCompletedStatus, addNewTask, changeTaskOrder , dragStartOrder, setDragStartOrder, dragStartId, setDragStartId}) => {
+const TaskItemContainer: FC<TaskItemContainerPropsType> = ({id, text, order, subtasksId, completed, dragStartOrder, setDragStartOrder, dragStartId, setDragStartId}) => {
+    const dispatch = useDispatch()
+    const subtasks = useSelector(subtasksSelector)
 
     const [showSubtasks, setShowSubtasks] = useState(false)
 
@@ -49,14 +38,12 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
     const subtasksGenerate = subtasksFind
         .map(subtask => {
         if(subtask && subtask.subsubtasksId){
-            return <TaskSubitemContainer 
+            return <TaskSubitem 
                 key={subtask.id} 
                 id={subtask.id} 
                 text={subtask.text} 
                 completed={subtask.completed}
                 subsubtasksId={subtask.subsubtasksId} 
-                deleteTask={deleteTask} 
-                changeCompletedStatus={changeCompletedStatus}
             />
         }
     })
@@ -64,7 +51,7 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
     const isCompleted = subtasksId?.length ? subtasksFind?.every(subtask => subtask && subtask.completed) : completed
 
     useEffect(() => {
-            setCompletedStatus(id, isCompleted, 0)
+        dispatch(tasksActions.setCompletedStatus(id, isCompleted, 0))
     }, [isCompleted])
 
     // ============ drag and drop ===============
@@ -97,8 +84,8 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
 
     const dropHandler = (e: any) => {
         e.preventDefault()
-        changeTaskOrder(dragStartId, order)
-        changeTaskOrder(id, dragStartOrder)
+        dispatch(tasksActions.changeTaskOrder(dragStartId, order))
+        dispatch(tasksActions.changeTaskOrder(id, dragStartOrder))
         
     }
 
@@ -111,9 +98,6 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
         setShowSubtasks={setShowSubtasks}
         isCompleted={isCompleted}
         subtasksGenerate={subtasksGenerate}
-        deleteTask={deleteTask}
-        changeCompletedStatus={changeCompletedStatus}
-        addNewTask={addNewTask}
         createSubtasksMode={createSubtasksMode}
         changeCreateSubtasksMode={changeCreateSubtasksMode}
         dragStartHandler={dragStartHandler}
@@ -123,16 +107,4 @@ const TaskItemContainer: FC<TaskItemContainerPropsType & MapStatePropsType & Map
     />
 }
 
-const mapStateToProps = (state: AppStateType) => ({
-    subtasks: state.tasksReducer.subtasks
-})
-
-const mapDispatchToProps = {
-    deleteTask: tasksActions.deleteTask,
-    changeCompletedStatus: tasksActions.changeCompletedStatus,
-    setCompletedStatus: tasksActions.setCompletedStatus,
-    addNewTask: tasksActions.addNewTask,
-    changeTaskOrder: tasksActions.changeTaskOrder,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskItemContainer)
+export default TaskItemContainer

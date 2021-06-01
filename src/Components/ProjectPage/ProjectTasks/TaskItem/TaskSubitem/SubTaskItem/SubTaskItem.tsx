@@ -1,19 +1,20 @@
 import { FC } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { tasksActions } from '../../../../../../Redux/tasksReducer'
 import s from './subTaskItem.module.css'
 
 type SubTaskItemPropsType = {
     id: number
     text: string
     completed: boolean
-    deleteTask: (id: number, level: number, subtasksId: Array<number> | null) => void
-    changeCompletedStatus: (id: number, level: number) => void
 }
 
-const SubTaskItem: FC<SubTaskItemPropsType> = ({id,  text, completed, deleteTask, changeCompletedStatus }) => {
+const SubTaskItem: FC<SubTaskItemPropsType> = ({id,  text, completed }) => {
+    const dispatch = useDispatch()
 
     const removeSubtaskItem = () => {
-        deleteTask(id, 2, null)
+        dispatch(tasksActions.deleteTask(id, 2, null))
         toast.dark("Подподзадача успешно удалена!", {
             position: "top-right",
             autoClose: 1500,
@@ -26,7 +27,7 @@ const SubTaskItem: FC<SubTaskItemPropsType> = ({id,  text, completed, deleteTask
     }
 
     const toggleCompletedStatus = () => {
-        changeCompletedStatus(id, 2)
+        dispatch(tasksActions.changeCompletedStatus(id, 2))
         toast.dark(completed ? 'Невыполнено!' : 'Выполнено!', {
             position: "top-right",
             autoClose: 1500,

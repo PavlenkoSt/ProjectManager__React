@@ -1,25 +1,91 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import s from './taskSubitem.module.css'
 import AddNewTaskForm from "../../../../common/AddNewTaskForm/AddNewTaskForm"
+import { useDispatch, useSelector } from "react-redux"
+import { subsubtasksSelector } from "../../../../../Redux/selectors/tasksSelector"
+import { SubsubtaskType, tasksActions } from "../../../../../Redux/tasksReducer"
+import SubTaskItem from "./SubTaskItem/SubTaskItem"
+import { toast } from "react-toastify"
 
 type TaskSubitemPropsType = {
+    id: number
     text: string
-    showTask: boolean
-    isCompleted: boolean
-    subtasksGenerate: Array<JSX.Element> | any
     completed: boolean
-    addSubtaskHandler: () => void
-    removeSubitem: () => void
-    toggleCompletedStatus: () => void
-    addSubtaskFromLevel1: (task: string) => void
-    changeCreateSubtasksMode: Dispatch<SetStateAction<boolean>>
-    setShowTask: Dispatch<SetStateAction<boolean>>
-    createSubtasksMode: boolean
+    subsubtasksId: Array<number>
 }
 
-const TaskSubitem: FC<TaskSubitemPropsType> = ({ text, showTask, isCompleted, completed, subtasksGenerate, addSubtaskHandler, removeSubitem, toggleCompletedStatus, addSubtaskFromLevel1, changeCreateSubtasksMode, setShowTask, createSubtasksMode }) => {
+const TaskSubitem: FC<TaskSubitemPropsType> = ({ id, text, completed, subsubtasksId }) => {
+    const dispatch = useDispatch()
+
+    const [showTask, setShowTask] = useState(false)
+    const [createSubtasksMode, changeCreateSubtasksMode] = useState(false)
+
+    const subsubtasks = useSelector(subsubtasksSelector)
+
+    const subtasksElems = subsubtasksId.map((subtaskId: number) => {
+        for(let i = 0; i <= subsubtasks.length; i++){
+            if(subsubtasks[i] && subsubtasks[i].id === subtaskId){
+                return subsubtasks[i]
+            }
+        }
+    })
+
+    const subtasksGenerate = subtasksElems.map((subsubtask?: SubsubtaskType) => subsubtask && (
+        <SubTaskItem 
+            key={subsubtask.id} 
+            id={subsubtask.id} 
+            completed={subsubtask.completed} 
+            text={subsubtask.text} 
+        />)
+    )
+
+    const isCompleted = subtasksElems.every(subsubtasksId => subsubtasksId && subsubtasksId.completed)
 
     const completedSubtask = !subtasksGenerate?.length ? completed : isCompleted
+
+    const removeSubitem = () => {
+        dispatch(tasksActions.deleteTask(id, 1, subsubtasksId))
+        toast.dark("Подзадача успешно удалена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
+
+    const addSubtaskFromLevel1 = (task: string) => {
+        dispatch(tasksActions.addNewTask(task, 1, id))
+        toast.dark("Подподзадача успешно добавлена!", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
+
+    const addSubtaskHandler = () => {
+        setShowTask(true)
+        changeCreateSubtasksMode(true)
+    }
+
+    const toggleCompletedStatus = () => {
+        dispatch(tasksActions.changeCompletedStatus(id, 1))
+        toast.dark(completed ? 'Невыполнено!' : 'Выполнено!', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
 
     return (
         <div className={`${s.subitem} ${showTask ? s.show : ''}`}> 
