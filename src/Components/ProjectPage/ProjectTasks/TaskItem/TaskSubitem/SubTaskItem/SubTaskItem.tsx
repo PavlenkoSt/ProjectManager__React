@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { tasksActions } from '../../../../../../Redux/tasksReducer'
-import s from './subTaskItem.module.css'
+import s from './subTaskItem.module.scss'
 
 type SubTaskItemPropsType = {
     id: number

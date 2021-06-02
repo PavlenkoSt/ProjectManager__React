@@ -1,5 +1,15 @@
 .subInnerTrigger{
     display: inline-flex;
+    &:hover{
+        & .subtaskItem{
+            border: 1px solid rgb(34, 34, 34);
+        }
+        & .optionsBar{
+            width: 60px;
+            border: 1px solid rgb(34, 34, 34);
+            border-left: none;
+        }
+    }
 }
 
 .subtaskItem{
@@ -11,6 +21,16 @@
     color: #333;
     cursor: pointer;
     transition: border .2s ease;
+
+    @media (max-width: 600px) {
+        margin-left: 20px;
+        width: calc(100% - 110px);
+        font-size: 14px;
+        padding: 5px;
+    }
+    @media (max-width: 550px) {
+        font-size: 13px;
+    }
 }
 
 .optionsBar{
@@ -35,16 +55,6 @@
     cursor: pointer;
 }
 
-.subInnerTrigger:hover .subtaskItem{
-    border: 1px solid rgb(34, 34, 34);
-}
-
-.subInnerTrigger:hover .optionsBar{
-    width: 60px;
-    border: 1px solid rgb(34, 34, 34);
-    border-left: none;
-}
-
 .completed{
     margin: 0;
     padding: 0;
@@ -62,21 +72,4 @@
 
 .noDone{
     background: url(../../../../../../assets/icons/completed.svg) center no-repeat;
-}
-
-@media (max-width: 600px) {
-    .subtaskItem{
-        margin-left: 20px;
-        width: calc(100% - 110px);
-    }
-    .subtaskItem{
-        font-size: 14px;
-        padding: 5px;
-    }
-}
-
-@media (max-width: 550px) {
-    .subtaskItem{
-        font-size: 13px;
-    }
 }

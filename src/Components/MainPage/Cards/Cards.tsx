@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 import Card from "./Card/Card"
 import ProjectList from "./Card/ProjectList/ProjectList"
-import s from './cards.module.css'
+import s from './cards.module.scss'
 import plus from '../../../assets/icons/plus-for-card.svg'
 
 const Cards = () => {

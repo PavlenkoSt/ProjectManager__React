@@ -1,5 +1,5 @@
 import { FC, useState } from "react"
-import s from './taskSubitem.module.css'
+import s from './taskSubitem.module.scss'
 import AddNewTaskForm from "../../../../common/AddNewTaskForm/AddNewTaskForm"
 import { useDispatch, useSelector } from "react-redux"
 import { subsubtasksSelector } from "../../../../../Redux/selectors/tasksSelector"

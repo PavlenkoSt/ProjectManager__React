@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { useSelector } from "react-redux"
 import { tasksSelector } from "../../../Redux/selectors/tasksSelector"
 import { TaskType } from "../../../Redux/tasksReducer"
-import s from './projectTasks.module.css'
+import s from './projectTasks.module.scss'
 import TaskItemContainer from "./TaskItem/TaskItemContainer"
 
 

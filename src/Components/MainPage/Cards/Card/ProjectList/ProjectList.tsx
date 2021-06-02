@@ -6,7 +6,7 @@ import getSubTasksFromTasks from '../../../../../heplers/getSubTasksFromTasks'
 import last10Items from '../../../../../heplers/last10Items'
 import { projectsSelector } from '../../../../../Redux/selectors/projectsSelectors'
 import { subsubtasksSelector, subtasksSelector, tasksSelector } from '../../../../../Redux/selectors/tasksSelector'
-import s from './projectList.module.css'
+import s from './projectList.module.scss'
 
 type ProjectListPropsType = {
     allMode: boolean

@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { FC, useEffect, useState } from "react"
-import s from './addTaskForm.module.css'
+import s from './addTaskForm.module.scss'
 import s2 from '../../common/AddNewTaskForm/addNewTaskForm.module.scss'
 import { tasksActions } from "../../../Redux/tasksReducer"
 import { useDispatch } from "react-redux"

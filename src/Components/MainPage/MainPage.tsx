@@ -1,5 +1,5 @@
 import MainPageHeader from "./MainPageHeader/MainPageHeader"
-import s from './mainPage.module.css'
+import s from './mainPage.module.scss'
 import Cards from "./Cards/Cards"
 
 const MainPage = () => {

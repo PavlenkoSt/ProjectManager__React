@@ -3,6 +3,14 @@
     padding: 0 15px;
     display: flex;
     justify-content: space-between;
+
+    @media(max-width: 1000px){
+        flex-direction: column;
+    }
+    @media(max-width: 430px){
+        margin-top: 30px;
+        padding: 0 5px;
+    }
 }
 
 .img{
@@ -11,23 +19,12 @@
     height: 150px;
     width: 150px;
     margin: 30px auto;
-}
 
-@media(max-width: 1000px){
-    .container{
-        flex-direction: column;
-    }
-    .img{
+    @media(max-width: 1000px){
         margin: 20px auto;
     }
-}
-
-@media(max-width: 430px){
-    .container{
-        margin-top: 30px;
-        padding: 0 5px;
-    }
-    .img{
+    @media(max-width: 430px){
         margin: 5px auto 10px;
     }
 }
+

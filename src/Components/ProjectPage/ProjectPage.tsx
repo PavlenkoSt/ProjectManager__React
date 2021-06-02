@@ -1,4 +1,4 @@
-import s from './projectPage.module.css'
+import s from './projectPage.module.scss'
 import ProjectTasks from "./ProjectTasks/ProjectTasks"
 import AddTaskForm from './AddTaskForm/AddTaskForm'
 import { useSelector } from 'react-redux'

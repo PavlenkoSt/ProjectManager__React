@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { tasksActions } from '../../../../Redux/tasksReducer'
 import AddNewTaskForm from '../../../common/AddNewTaskForm/AddNewTaskForm'
-import s from './taskItem.module.css'
+import s from './taskItem.module.scss'
 
 type TaskItemPropsType = {
     id: number

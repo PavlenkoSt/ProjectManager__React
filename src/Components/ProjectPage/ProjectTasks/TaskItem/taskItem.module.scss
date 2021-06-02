@@ -1,0 +1,149 @@
+.target{
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: border .2s ease;
+    position: relative;
+    padding-right: 35px;
+    width: calc(100% - 90px);
+    &::before{
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: url(../../../../assets/icons/down-arrow-grey.svg) center no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform .3s ease;
+    }
+    &.dragOver{
+        background-color: rgb(168, 167, 167);
+        border: 1px solid rgb(34, 34, 34);
+        & + .options{
+            width: 90px !important;
+            border: 1px solid rgb(34, 34, 34);
+            border-left: none;
+            background-color: rgb(168, 167, 167);
+        }
+    }
+
+    @media (max-width: 600px) {
+        font-size: 14px;
+        padding: 5px;
+        padding-right: 30px;
+    }
+    @media (max-width: 550px) {
+        font-size: 13px;
+    }
+}
+
+.item{
+    &.show{
+        & .target{
+            &::before{
+                transform: translateY(-50%) rotate(-180deg);
+            }
+        }
+    }
+    &.without{
+        & .target{
+            padding-right: 10px;
+            &:before{
+                display: none;
+            }
+        }
+        & .innerTrigger{
+            &:hover{
+                & .options{
+                    width: 90px;
+                }
+            }
+        }
+    }
+}
+
+.innerTrigger{
+    display: flex;
+    &:hover{
+        & .target{
+            border: 1px solid rgb(34, 34, 34);
+        }
+        & .options{
+            width: 60px;
+            border: 1px solid rgb(34, 34, 34);
+            border-left: none;
+        }
+    }
+}
+
+.options{
+    width: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: none;
+    transition: width .2s ease;
+    overflow: hidden;
+}
+
+.delete{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: url(../../../../assets/icons/delete.svg) center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.addSubtaskbtn{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: url(../../../../assets/icons/plus-grey.svg) center no-repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+}
+
+.completed{
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.done{
+    background: url(../../../../assets/icons/completed-green.svg) center no-repeat;
+}
+
+.noDone{
+    background: url(../../../../assets/icons/completed.svg) center no-repeat;
+}
+
+.subForm{
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 20px;
+
+    @media(max-width: 750px){
+        padding-bottom: 20px;
+    }
+}

@@ -1,4 +1,4 @@
-import s from './mainPageHeader.module.css'
+import s from './mainPageHeader.module.scss'
 
 const MainPageHeader = () => {
     return (

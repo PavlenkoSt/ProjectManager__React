@@ -9,10 +9,8 @@
 
 .container{
     padding: 20px 15px;
-}
-
-@media(max-width: 550px){
-    .container{
+    @media(max-width: 550px){
         padding: 10px 5px 20px;
     }
 }
+
