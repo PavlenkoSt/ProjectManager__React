@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from "react"
 import { NavLink, RouteComponentProps, withRouter } from "react-router-dom"
-import s from './projectItem.module.css'
+import s from './projectItem.module.scss'
 
 type ProjectItemPropsType = {
     name: string

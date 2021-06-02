@@ -1,12 +1,11 @@
 .link{
     border: 1px solid transparent;
     transition: all ease .4s;
-}
-
-.link:hover{
-    border: 1px solid rgb(1, 48, 201);
-    background-color: rgb(214, 214, 214);
-    transition: all ease .4s;
+    &:hover{
+        border: 1px solid rgb(1, 48, 201);
+        background-color: rgb(214, 214, 214);
+        transition: all ease .4s;
+    }
 }
 
 .active{
