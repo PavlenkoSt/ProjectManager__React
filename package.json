@@ -1,6 +1,6 @@
 {
-  "name": "check-list",
-  "homepage": "https://pavlenkost.github.io/checkList__React/",
+  "name": "project-manager",
+  "homepage": "https://pavlenkost.github.io/ProjectManager__React/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
