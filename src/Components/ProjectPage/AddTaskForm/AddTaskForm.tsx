@@ -1,10 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { FC, useEffect, useState } from "react"
 import s from './addTaskForm.module.css'
-import s2 from '../../common/AddNewTaskForm/addNewTaskForm.module.css'
+import s2 from '../../common/AddNewTaskForm/addNewTaskForm.module.scss'
 import { tasksActions } from "../../../Redux/tasksReducer"
-import { connect, useDispatch } from "react-redux"
-import { AppStateType } from "../../../Redux/reduxStore"
+import { useDispatch } from "react-redux"
 import { toast } from "react-toastify"
 
 type AddTaskFormPropsType = {

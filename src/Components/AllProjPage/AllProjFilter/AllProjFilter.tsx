@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { projectsActions } from '../../../Redux/projectsReducer';
 import { filterOptionSelector } from '../../../Redux/selectors/projectsSelectors';
-import s from './allProjFilter.module.css'
+import s from './allProjFilter.module.scss'
 
 
 const AllProjFilter = () => {

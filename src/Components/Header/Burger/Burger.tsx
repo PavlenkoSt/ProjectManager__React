@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react'
-import s from './burger.module.css'
+import s from './burger.module.scss'
 
 type BurgerPropsType = {
     openMenu: boolean,

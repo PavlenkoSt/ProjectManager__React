@@ -8,26 +8,25 @@
     color: #333;
     font-size: 18px;
     height: 60px;
-}
 
-.header h2{
-    margin: 0;
-}
-
-@media(max-width: 800px){
-    .header h2{
-        font-size: 20px;
+    & h2{
+        margin: 0;
+        @media(max-width: 800px){
+            font-size: 20px;
+        }
+        @media(max-width: 600px){
+            font-size: 16px;
+        }
+        @media(max-width: 550px){
+            font-size: 14px;
+        }
     }
-}
 
-@media(max-width: 600px){
-    .header{
+    @media(max-width: 600px){
         width: calc(100% - 130px);
     }
-    .header h2{
-        font-size: 16px;
-    }
 }
+
 
 @media(max-width: 550px){
     .header h2{

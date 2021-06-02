@@ -5,10 +5,9 @@
     padding: 2px;
     border: 1px solid transparent;
     width: 100%;
-}
-
-.form.err{
-    border: 1px solid red;
+    &.err{
+        border: 1px solid red;
+    }
 }
 
 .input{
@@ -23,12 +22,17 @@
     position: relative;
     height: 35px;
     width: 100%;
-}
+    &:focus{
+        border: 1px solid #333;
+    }
 
-.input:focus{
-    border: 1px solid #333;
+    @media(max-width: 600px){
+        height: 30px;
+    }
+    @media(max-width: 450px){
+        font-size: 13px;
+    }
 }
-
 
 .errorMess{
     position: absolute;
@@ -52,6 +56,11 @@
     background-color: #333;
     background-size: cover;
     border-left: 1px solid #fff;
+
+    @media(max-width: 600px){
+        height: 30px;
+        width: 30px;
+    }
 }
 
 .add{
@@ -61,17 +70,6 @@
 .close{
     background: url(../../../assets/icons/delete-white.svg) center no-repeat #333;
     background-size: 20px;
-}
-
-@media(max-width: 600px){
-    .input{
-        height: 30px;
-    }
-
-    .btn{
-        height: 30px;
-        width: 30px;
-    }
 }
 
 @media(max-width: 450px){

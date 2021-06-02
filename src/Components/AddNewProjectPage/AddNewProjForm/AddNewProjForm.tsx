@@ -6,7 +6,7 @@ import constructLinkFromProjectName from "../../../heplers/constructLinkFromProj
 import isUniqueProjectName from "../../../heplers/isUniqueProjectName"
 import { projectsActions } from "../../../Redux/projectsReducer"
 import { projectsSelector } from "../../../Redux/selectors/projectsSelectors"
-import s from './addNewProjForm.module.css'
+import s from './addNewProjForm.module.scss'
 
 type ErrorsType = {
     name?: string

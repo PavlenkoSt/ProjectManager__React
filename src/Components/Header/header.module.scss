@@ -6,15 +6,13 @@
     z-index: 100;
     box-shadow: 0 0 3px #333;
     transition: width .3s ease-in .3s;
-}
-
-.header.wide{
-    width: 300px;
-    transition: width .3s ease-in;
-}
-
-@media(max-width: 400px){
-    .header.wide{
-        width: 100%;
+    &.wide{
+        width: 300px;
+        transition: width .3s ease-in;
+        
+        @media(max-width: 400px){
+            width: 100%;
+        }
     }
 }
+

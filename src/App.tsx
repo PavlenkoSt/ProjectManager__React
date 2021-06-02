@@ -7,7 +7,6 @@ import MainPage from './Components/MainPage/MainPage'
 import ProjectPage from './Components/ProjectPage/ProjectPage'
 import AllProjPage from './Components/AllProjPage/AllProjPage'
 import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
 
 type AppPropsType = {
   links: Array<string>

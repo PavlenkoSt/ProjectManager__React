@@ -7,7 +7,7 @@ import getSubTasksFromTasks from "../../../../heplers/getSubTasksFromTasks"
 import { projectsActions } from "../../../../Redux/projectsReducer"
 import { subsubtasksSelector, subtasksSelector, tasksSelector } from "../../../../Redux/selectors/tasksSelector"
 import { tasksActions } from '../../../../Redux/tasksReducer'
-import s from '../allProjTable.module.css'
+import s from '../allProjTable.module.scss'
 
 type AllProjItemPropsType = {
     core: string

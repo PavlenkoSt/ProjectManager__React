@@ -8,6 +8,11 @@
     z-index: 100;
     background-color: rgb(36, 36, 36);
     box-shadow: 0 0 3px #333;
+    &:hover{
+        & .img{
+            transform: scale(0.8);
+        }
+    } 
 }
 
 .link{
@@ -24,8 +29,4 @@
     width: 30px;
     height: 30px;
     transition: transform .2s ease;
-}
-
-.home:hover .img{
-    transform: scale(0.8);
 }

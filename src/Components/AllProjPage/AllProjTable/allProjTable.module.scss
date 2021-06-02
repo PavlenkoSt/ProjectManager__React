@@ -1,0 +1,89 @@
+.table{
+    color: #333;
+    width: 100%;
+    font-size: 14px;
+    background-color: #fff;
+    & thead{
+        font-weight: 600;
+    }
+    & td{
+        padding: 5px;
+        text-align: center;
+        &:nth-child(1){
+            width: 15%;
+        }
+        &:nth-child(2){
+            width: 15%;
+        }
+        &:nth-child(3){
+            width: 55%;
+        }
+        &:nth-child(4){
+            width: 5%;
+        }
+        &:nth-child(5){
+            width: 5%;
+        }
+        &:nth-child(6){
+            width: 5%;
+        }
+
+        @media(max-width: 400px){
+            padding: 2px;
+        }
+    }
+    & a{
+        color: rgb(65, 65, 255);
+        text-decoration: none;
+        transition: all ease .2s;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    @media(max-width: 650px){
+        font-size: 13px;
+    }
+    @media(max-width: 550px){
+        font-size: 12px;
+    }
+    @media(max-width: 450px){
+        font-size: 10px;
+    }
+    @media(max-width: 400px){
+        font-size: 9px;
+    }
+    @media(max-width: 350px){
+        font-size: 8px;
+    }
+}
+
+.table, td {
+    border: 1px solid rgb(88, 88, 88);
+    border-spacing: 0;
+}
+
+.btn{
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+    color: rgb(255, 112, 112);
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all ease .3s;
+    &:hover{
+        color: rgb(253, 0, 0);
+    }
+}
+
+.green{
+    color: rgb(0, 221, 0);
+}

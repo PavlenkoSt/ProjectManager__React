@@ -1,4 +1,4 @@
-import s from './AddNewProjHeader.module.css'
+import s from './AddNewProjHeader.module.scss'
 
 
 const AddNewProjHeader = () => {

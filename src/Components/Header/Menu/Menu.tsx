@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
-import s from './menu.module.css'
+import s from './menu.module.scss'
 import { NavLink } from 'react-router-dom'
-import ProjectsContainer from './Projects/ProjectsContainer'
+import Projects from './Projects/Projects'
 
 type MenuPropsType = {
     openMenu: boolean
@@ -11,8 +11,8 @@ type MenuPropsType = {
 const Menu: FC<MenuPropsType> = ({ openMenu, setOpenMenu }) => {
     return (
         <div className={`${s.menu} ${openMenu ? s.show : ''}`}>
-            <ProjectsContainer openMenu={openMenu} setOpenMenu={setOpenMenu} activeMode={true}/>
-            <ProjectsContainer openMenu={openMenu} setOpenMenu={setOpenMenu} activeMode={false}/>
+            <Projects openMenu={openMenu} setOpenMenu={setOpenMenu} activeMode={true}/>
+            <Projects openMenu={openMenu} setOpenMenu={setOpenMenu} activeMode={false}/>
             <NavLink onClick={() => setOpenMenu(false)} className={s.addNewProj} to='/add-new-project'>Добавить новый проект</NavLink>
         </div>
     )

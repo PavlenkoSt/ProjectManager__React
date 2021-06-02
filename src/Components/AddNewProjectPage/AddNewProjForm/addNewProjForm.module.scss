@@ -11,31 +11,31 @@
     flex-direction: column;
     margin-bottom: 30px;
     position: relative;
-}
-
-.item label{
-    margin-bottom: 2px;
-    color: #333;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.item input,
-.item textarea{
-    border: 1px solid rgb(160, 160, 160);
-    outline: none;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: #333;
-    font-weight: 600;
-    padding: 5px 10px;
-    transition: all ease .2s;
-}
-
-.item input:focus,
-.item textarea:focus{
-    border: 1px solid rgb(24, 24, 24);
-
+    & label{
+        margin-bottom: 2px;
+        color: #333;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    & input,
+    & textarea{
+        border: 1px solid rgb(160, 160, 160);
+        outline: none;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        color: #333;
+        font-weight: 600;
+        padding: 5px 10px;
+        transition: all ease .2s;
+        &:focus{
+            border: 1px solid rgb(24, 24, 24);
+        }
+    }
+    & .input{
+        &.errInp{
+            border: 1px solid red;
+        }
+    }
 }
 
 .textarea{
@@ -54,12 +54,11 @@
     margin-top: 5px;
     cursor: pointer;
     transition: all ease .2s;
-}
-
-.btn:hover{
-    background-color: rgb(108, 255, 108);
-    color: #333;
-    border: 1px solid #333;
+    &:hover{
+        background-color: rgb(108, 255, 108);
+        color: #333;
+        border: 1px solid #333;
+    }
 }
 
 .err{
@@ -70,19 +69,15 @@
     left: 0;
 }
 
-.item .input.errInp{
-    border: 1px solid red;
-}
-
 @media(max-width: 550px){
     .form{
         padding: 0 5px;
     }
     .item{
         margin-bottom: 25px;
-    }
-    .item label{
-        font-size: 12px;
+        & label{
+            font-size: 12px;
+        }
     }
     .err{
         font-size: 10px;

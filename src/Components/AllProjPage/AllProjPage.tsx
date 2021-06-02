@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { filterOptionSelector, projectsSelector } from '../../Redux/selectors/projectsSelectors'
 import AllProjFilter from './AllProjFilter/AllProjFilter'
-import s from './allProjPage.module.css'
+import s from './allProjPage.module.scss'
 import AllProjTable from './AllProjTable/AllProjTable'
 
 const AllProjPage = () => {

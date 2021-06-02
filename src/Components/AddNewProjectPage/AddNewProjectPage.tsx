@@ -1,5 +1,5 @@
 import AddNewProjHeader from "./AddNewProjHeader/AddNewProjHeader"
-import s from './addNewProjectPage.module.css'
+import s from './addNewProjectPage.module.scss'
 import AddNewProjForm from "./AddNewProjForm/AddNewProjForm"
 
 

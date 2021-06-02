@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { ProjectType } from "../../../Redux/projectsReducer"
 import AllProjItem from "./AllProjItem/AllProjItem"
-import s from './allProjTable.module.css'
+import s from './allProjTable.module.scss'
 
 type AllProjTablePropsType = {
     targetProjects: Array<ProjectType>

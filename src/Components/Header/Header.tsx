@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import Burger from './Burger/Burger'
-import s from './header.module.css'
+import s from './header.module.scss'
 import Home from './Home/Home'
 import Menu from './Menu/Menu'
 
