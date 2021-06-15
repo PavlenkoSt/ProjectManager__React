@@ -1,4 +1,4 @@
-import tasksReducer, {tasksActions, DELETE_TASK, CHANGE_COMPLETED_STATUS, SET_COMPLETED_STATUS, ADD_NEW_TASK, CHANGE_TASK_ORDER, SET_TASKS_FROM_LS} from './tasksReducer'
+import tasksReducer, {tasksActions, DELETE_TASK, CHANGE_COMPLETED_STATUS, SET_COMPLETED_STATUS, ADD_NEW_TASK, CHANGE_TASK_ORDER, SET_TASKS_FROM_LS} from '../tasksReducer'
 
 const state = {
     tasks: [

@@ -1,4 +1,4 @@
-import projectsReducer, {ADD_NEW_PROJECT, CHANGE_FILTER_OPTION, DELETE_PROJECT, projectsActions, SET_PROJECTS_FROM_LS} from './projectsReducer'
+import projectsReducer, {ADD_NEW_PROJECT, CHANGE_FILTER_OPTION, DELETE_PROJECT, projectsActions, SET_PROJECTS_FROM_LS} from '../projectsReducer'
 
 const state = {
     projects: [
